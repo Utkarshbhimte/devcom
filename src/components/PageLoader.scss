@@ -1,0 +1,11 @@
+.PageLoader {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    height: 2rem;
+    width: 2rem;
+  }
+}
