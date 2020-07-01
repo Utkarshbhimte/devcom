@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
 import "./AddProjectCard.scss";
-import { createWork } from "util/db";
+import { createWork, updateWork } from "util/db";
 import { useAuth } from "util/auth";
 
-const AddProjectCard = () => {
+export const ProjectFormModal = ({ defaultValue = {}, children, title }) => {
   const { user } = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [tags, setTags] = useState(defaultValue.tags || []);
 
   // inputRef
   const titleRef = useRef(null);
@@ -15,6 +16,16 @@ const AddProjectCard = () => {
   const codeLinkRef = useRef(null);
 
   const handleToggle = () => setShowForm((prev) => !prev);
+
+  const handleTagsChange = (event) => {
+    const value = event.target.value;
+    setTags(
+      value
+        .split(",")
+        .map((a) => a.trim())
+        .filter((a) => !!a.length)
+    );
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,14 +37,26 @@ const AddProjectCard = () => {
         projectLinkRef.current && projectLinkRef.current.value;
       const codeLink = codeLinkRef.current && codeLinkRef.current.value;
       setIsLoading(true);
-      await createWork({
-        title,
-        desc,
-        projectLink,
-        codeLink,
-        owner: user.id,
-        type: "project",
-      });
+
+      if (defaultValue.id) {
+        await updateWork(defaultValue.id, {
+          title,
+          desc,
+          projectLink,
+          codeLink,
+          tags,
+        });
+      } else {
+        await createWork({
+          title,
+          desc,
+          projectLink,
+          codeLink,
+          tags,
+          owner: user.uid,
+          type: "project",
+        });
+      }
       setShowForm(false);
     } catch (error) {
       console.error(error);
@@ -43,11 +66,7 @@ const AddProjectCard = () => {
   };
   return (
     <>
-      {!showForm && (
-        <div onClick={handleToggle} className="add-project-card work-card">
-          Add Project
-        </div>
-      )}
+      {!showForm && React.cloneElement(children, { onClick: handleToggle })}
       {/*
       {!!showForm && (
         <>
@@ -59,15 +78,39 @@ const AddProjectCard = () => {
         <div className="modal is-active">
           <div className="modal-background"></div>
           <div className="modal-content">
-            <h3 className="title is-4">Add Project</h3>
+            <h3 className="title is-4">{title}</h3>
             <div className="form-wrapper">
               <div className="control">
                 <span>Project Name</span>
-                <input ref={titleRef} autoFocus className="input" type="text" />
+                <input
+                  defaultValue={defaultValue.title}
+                  ref={titleRef}
+                  autoFocus
+                  className="input"
+                  type="text"
+                />
+              </div>
+              <div className="control">
+                <span>Tags</span>
+                <div className="tags">
+                  {tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <input
+                  className="input"
+                  type="text"
+                  defaultValue={(defaultValue.tags || []).join(",")}
+                  placeholder="add relevant language and libraries; comma separated"
+                  onChange={handleTagsChange}
+                />
               </div>
               <div className="control">
                 <span>Brief Description</span>
                 <textarea
+                  defaultValue={defaultValue.desc}
                   ref={descRef}
                   className="textarea"
                   placeholder="Keep it under 220 characters"
@@ -76,6 +119,7 @@ const AddProjectCard = () => {
               <div className="control">
                 <span>Project URL </span>
                 <input
+                  defaultValue={defaultValue.projectLink || "https://"}
                   ref={projectLinkRef}
                   className="input"
                   type="text"
@@ -85,6 +129,7 @@ const AddProjectCard = () => {
               <div className="control">
                 <span>Github URL (if public)</span>
                 <input
+                  defaultValue={defaultValue.codeLink}
                   ref={codeLinkRef}
                   className="input"
                   type="text"
@@ -114,5 +159,11 @@ const AddProjectCard = () => {
     </>
   );
 };
+
+const AddProjectCard = () => (
+  <ProjectFormModal title="Add Project">
+    <div className="add-project-card work-card">Add Project</div>
+  </ProjectFormModal>
+);
 
 export default AddProjectCard;

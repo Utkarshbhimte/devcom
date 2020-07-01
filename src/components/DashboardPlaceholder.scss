@@ -13,19 +13,17 @@
 
   .work-card-grid {
     display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
 
     .work-card {
       padding: 1rem;
       border-radius: 1rem;
       box-shadow: 0 0 20px -10px #c3c3c3;
-      // min-height: 200px;
-      grid-gap: 1rem;
       border: 1px solid #f2f2f2;
 
       .title {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
       }
 
       p {

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import firebase from "./firebase";
 
-const firestore = firebase.firestore();
+export const firestore = firebase.firestore();
 
 /**** USERS ****/
 
@@ -60,6 +60,10 @@ export function createWork(data) {
   return firestore.collection("works").add(data);
 }
 
+export function updateWork(id, data) {
+  return firestore.collection("works").doc(id).update(data);
+}
+
 export function useProjectsByOwner(owner) {
   return useQuery(
     owner &&
@@ -78,6 +82,10 @@ export function useBlogsByOwner(owner) {
         .where("owner", "==", owner)
         .where("type", "==", "blog")
   );
+}
+
+export function useFeedData() {
+  return useQuery(firestore.collection("works"));
 }
 
 /**** HELPERS ****/

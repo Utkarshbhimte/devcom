@@ -1,17 +1,22 @@
 import React from "react";
 import "./HomePageFeed.scss";
 import HomePageFeedCard from "components/HomePageFeedCard/HomePageFeedCard";
+import { useFeedData } from "util/db";
 
-const HomePageFeed = ({ projects = [] }) => {
+const HomePageFeed = () => {
+  const feedQuery = useFeedData();
+
   return (
     <div className="home-page-feed">
       <div className="container">
-        {!projects.length && (
-          <div className="empty-feed">There are not Projects submitted yet</div>
+        <h3 className="title is-5">Latest Posts</h3>
+        {!(feedQuery.data && feedQuery.data.length) && (
+          <div className="empty-feed">There are nothing here right now</div>
         )}
-        {projects.map((project) => (
-          <HomePageFeedCard project={project} />
-        ))}
+        <div className="feed-card-wrap">
+          {feedQuery.data &&
+            feedQuery.data.map((data) => <HomePageFeedCard data={data} />)}
+        </div>
       </div>
     </div>
   );
