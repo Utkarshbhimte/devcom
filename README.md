@@ -32,6 +32,10 @@ This project uses the following libraries and services:
 - Analytics - [Google Analytics](https://googleanalytics.com)
 - Hosting - [Vercel](https://vercel.com)
 
+## Contribution
+
+Currently, you can just add your name to CONTRIBUTORS.md and when raise a PR. I will be adding some tasks which you can assign to yourself and get started with it. 
+
 ## 📚 Guide
 
   <details>
