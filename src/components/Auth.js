@@ -5,12 +5,15 @@ import AuthSocial from "components/AuthSocial";
 import AuthFooter from "components/AuthFooter";
 import { useRouter } from "next/router";
 import "components/Auth.scss";
+import { useAuth } from "util/auth";
 
 function Auth(props) {
   const router = useRouter();
   const [formAlert, setFormAlert] = useState(null);
+  // const { handleAuth } = useAuth();
 
   const handleAuth = (user) => {
+    // handle create user after auth
     router.push(props.afterAuthPath);
   };
 

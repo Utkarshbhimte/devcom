@@ -13,7 +13,7 @@ function AuthTypePage(props) {
       backgroundImage=""
       backgroundImageOpacity={1}
       type={type}
-      providers={["google", "facebook", "twitter"]}
+      providers={["google"]}
       afterAuthPath="/dashboard"
     ></AuthSection>
   );

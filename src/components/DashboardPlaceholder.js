@@ -3,40 +3,55 @@ import Section from "components/Section";
 import SectionHeader from "components/SectionHeader";
 import { useAuth } from "util/auth.js";
 import "components/DashboardPlaceholder.scss";
+import AddProjectCard from "./AddProjectCard/AddProjectCard";
+import AddBlogCard from "./AddBlogCard/AddBlogCard";
+import { useProjectsByOwner } from "util/db";
 
 function DashboardPlaceholder(props) {
-  const auth = useAuth();
-
+  const { user } = useAuth();
+  const projectQuery = user && useProjectsByOwner(user.uid);
+  console.log("DashboardPlaceholder -> projectQuery", projectQuery);
   return (
-    <Section color={props.color} size={props.size}>
+    <Section color={props.color} size={props.size} className="dashboard-page">
       <div className="container">
         <SectionHeader
-          title={`Hey there 👋`}
-          subtitle={`You are logged in as ${auth.user.email}`}
+          title={`Hey there, ${user.name} 👋`}
+          // subtitle={`You are logged in as ${}`}
           size={3}
           spaced={true}
           className="has-text-centered"
         ></SectionHeader>
-        <div className="columns is-vcentered is-desktop">
-          <div className="column is-6-desktop">
-            This would be a good place to build your custom product features
-            after exporting your codebase.
-            <br />
-            <br />
-            You can grab the current user, query your database, and render
-            custom components. Divjoy gives you everything you need so that you
-            can get right to work on building your web app.
+
+        <section className="py-4">
+          <div className="container">
+            <h3 className="section-heading title is-3 ">Your Projects</h3>
+            <div className="work-card-grid">
+              <AddProjectCard />
+              {projectQuery &&
+                projectQuery.data &&
+                projectQuery.data.map((project) => (
+                  <div key={project.id} target="_blank" className="work-card ">
+                    <div className="details">
+                      <h4 className="title is-4 mb-1">{project.title}</h4>
+                      <p>{project.desc}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
           </div>
-          <div className="column is-1"></div>
-          <div className="column">
-            <figure className="DashboardPlaceholder__image image">
-              <img
-                src="https://uploads.divjoy.com/undraw-personal_settings_kihd.svg"
-                alt="Illustration"
-              ></img>
-            </figure>
+        </section>
+        <section className="py-4">
+          <div className="container">
+            <h3 className="section-heading title is-3">Your Blogs</h3>
+            <div className="work-card-grid">
+              <AddBlogCard />
+              {props.userData &&
+                (props.userData.blogs || []).map((blog) => (
+                  <div className="blog-card">Here is a Blog</div>
+                ))}
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </Section>
   );

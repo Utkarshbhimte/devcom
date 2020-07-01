@@ -21,7 +21,14 @@ export function createUser(uid, data) {
   return firestore
     .collection("users")
     .doc(uid)
-    .set({ uid, ...data }, { merge: true });
+    .set(
+      {
+        uid,
+        ...data,
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
 }
 
 /**** ITEMS ****/
@@ -47,6 +54,30 @@ export function updateItem(id, data) {
 // Create a new item
 export function createItem(data) {
   return firestore.collection("items").add(data);
+}
+
+export function createWork(data) {
+  return firestore.collection("works").add(data);
+}
+
+export function useProjectsByOwner(owner) {
+  return useQuery(
+    owner &&
+      firestore
+        .collection("works")
+        .where("owner", "==", owner)
+        .where("type", "==", "project")
+  );
+}
+
+export function useBlogsByOwner(owner) {
+  return useQuery(
+    owner &&
+      firestore
+        .collection("works")
+        .where("owner", "==", owner)
+        .where("type", "==", "blog")
+  );
 }
 
 /**** HELPERS ****/

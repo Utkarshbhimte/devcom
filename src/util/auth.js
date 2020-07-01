@@ -44,9 +44,11 @@ function useProvideAuth() {
     await waitForFirebase();
 
     // Create the user in the database if they are new
-    if (additionalUserInfo.isNewUser) {
-      createUser(user.uid, { email: user.email });
-    }
+    createUser(user.uid, {
+      email: user.email,
+      photoURL: user.photoURL,
+      displayName: user.displayName,
+    });
 
     // Update user in state
     setUser(user);

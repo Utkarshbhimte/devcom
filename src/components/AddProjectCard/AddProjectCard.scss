@@ -1,0 +1,33 @@
+.add-project-card {
+  display: grid;
+  place-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+
+  .form-wrapper {
+    display: grid;
+    grid-gap: 1.5rem;
+
+    .control {
+      span {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    .button {
+      min-width: 10rem;
+    }
+  }
+}

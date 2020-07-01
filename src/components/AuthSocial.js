@@ -14,22 +14,17 @@ function AuthSocial(props) {
     github: "GitHub",
   };
 
-  const onSigninWithProvider = (provider) => {
+  const onSigninWithProvider = async (provider) => {
     setPending(provider);
-    auth
-      .signinWithProvider(provider)
-      .then((user) => {
-        // Remember this provider was last used
-        // so we can indicate for next login.
-        localStorage.setItem("lastUsedAuthProvider", provider);
-        props.onAuth(user);
-      })
-      .catch((error) => {
-        props.onError(error.message);
-      })
-      .finally(() => {
-        setPending(null);
-      });
+    try {
+      const user = await auth.signinWithProvider(provider);
+      localStorage.setItem("lastUsedAuthProvider", provider);
+      props.onAuth(user);
+    } catch (error) {
+      props.onError(error.message);
+    } finally {
+      setPending(null);
+    }
   };
 
   // Get value of last used auth provider
