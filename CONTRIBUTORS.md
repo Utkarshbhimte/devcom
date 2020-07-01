@@ -1,3 +1,3 @@
 # Contributors
 
-* Utkarsh Bhimte [github](https://github.com/utkarshbhimte)
+* Utkarsh Bhimte [(utkarshbhimte)](https://github.com/utkarshbhimte)
