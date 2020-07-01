@@ -57,11 +57,31 @@ export function createItem(data) {
 }
 
 export function createWork(data) {
-  return firestore.collection("works").add(data);
+  return firestore
+    .collection("works")
+    .add({ ...data, created: firebase.firestore.FieldValue.serverTimestamp() });
+}
+
+export function getWork(id) {
+  return firestore.collection("works").doc(id).get();
 }
 
 export function updateWork(id, data) {
-  return firestore.collection("works").doc(id).update(data);
+  return firestore
+    .collection("works")
+    .doc(id)
+    .update({
+      ...data,
+      updated: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+}
+
+export function createComment(workId, text, author) {
+  return firestore.collection(`works/${workId}/comments`).add({
+    text,
+    author,
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+  });
 }
 
 export function useProjectsByOwner(owner) {
@@ -87,6 +107,10 @@ export function useBlogsByOwner(owner) {
 export function useFeedData() {
   return useQuery(firestore.collection("works"));
 }
+
+export const useComments = (workId) => {
+  return useQuery(firestore.collection(`works/${workId}/comments`));
+};
 
 /**** HELPERS ****/
 

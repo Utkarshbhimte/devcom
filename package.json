@@ -6,18 +6,19 @@
     "divjoy"
   ],
   "dependencies": {
+    "@analytics/google-analytics": "0.2.2",
+    "@zeit/next-sass": "0.2.1-canary.4",
+    "analytics": "0.3.1",
+    "bulma": "0.7.5",
+    "firebase": "7.15.1",
+    "firebase-admin": "^8.13.0",
+    "mailchimp-api-v3": "1.13.1",
+    "next": "9.4",
+    "node-sass": "4.13.0",
+    "query-string": "6.9.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "next": "9.4",
-    "@zeit/next-sass": "0.2.1-canary.4",
-    "node-sass": "4.13.0",
-    "react-hook-form": "4.10.1",
-    "bulma": "0.7.5",
-    "query-string": "6.9.0",
-    "firebase": "7.15.1",
-    "mailchimp-api-v3": "1.13.1",
-    "analytics": "0.3.1",
-    "@analytics/google-analytics": "0.2.2"
+    "react-hook-form": "4.10.1"
   },
   "scripts": {
     "dev": "next dev",
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "next-images": "^1.4.0"
   }
 }

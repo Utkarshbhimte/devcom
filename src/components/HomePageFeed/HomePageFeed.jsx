@@ -15,7 +15,9 @@ const HomePageFeed = () => {
         )}
         <div className="feed-card-wrap">
           {feedQuery.data &&
-            feedQuery.data.map((data) => <HomePageFeedCard data={data} />)}
+            feedQuery.data.map((data) => (
+              <HomePageFeedCard key={data.id} data={data} />
+            ))}
         </div>
       </div>
     </div>
