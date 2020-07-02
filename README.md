@@ -25,16 +25,16 @@ When the above command completes you'll be able to view your website at `http://
 
 This project uses the following libraries and services:
 
-- Framework - [Next.js](https://nextjs.org)
-- UI Kit - [Bulma](https://bulma.io)
-- Authentication - [Firebase Auth](https://firebase.google.com/products/auth)
-- Newsletter - [Mailchimp](https://mailchimp.com)
-- Analytics - [Google Analytics](https://googleanalytics.com)
-- Hosting - [Vercel](https://vercel.com)
+-   Framework - [Next.js](https://nextjs.org)
+-   UI Kit - [Bulma](https://bulma.io)
+-   Authentication - [Firebase Auth](https://firebase.google.com/products/auth)
+-   Newsletter - [Mailchimp](https://mailchimp.com)
+-   Analytics - [Google Analytics](https://googleanalytics.com)
+-   Hosting - [Vercel](https://vercel.com)
 
 ## Contribution
 
-Currently, you can just add your name to CONTRIBUTORS.md and when raise a PR. I will be adding some tasks which you can assign to yourself and get started with it. 
+Currently, you can just add your name to CONTRIBUTORS.md and when raise a PR. I will be adding some tasks which you can assign to yourself and get started with it.
 
 ## 📚 Guide
 
@@ -53,30 +53,31 @@ Currently, you can just add your name to CONTRIBUTORS.md and when raise a PR. I 
     <p>
       This project uses the built-in Next.js router and its convenient <code>useRouter</code> hook. Learn more in the <a target="_blank" href="https://github.com/zeit/next.js/#routing">Next.js docs</a>.
     
-    ```jsx
-    import Link from 'next/link';
+```jsx
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-    function MyComponent(){
-      // Get the router object
-      const router = useRouter();
+function MyComponent(){
+	// Get the router object
+	const router = useRouter();
 
-      // Get value from query string (?postId=123) or route param (/:postId)
-      console.log(router.query.postId);
+    // Get value from query string (?postId=123) or route param (/:postId)
+    console.log(router.query.postId);
 
-      // Get current pathname
-      console.log(router.pathname)
+    // Get current pathname
+    console.log(router.pathname)
 
-      // Navigate with the <Link> component or with router.push()
-      return (
+    // Navigate with the <Link> component or with router.push()
+    return (
         <div>
-          <Link href="/about"><a>About</a></Link>
-          <button onClick={(e) => router.push('/about')}>About</button>
+          	<Link href="/about"><a>About</a></Link>
+          	<button onClick={(e) => router.push('/about')}>About</button>
         </div>
-      );
+      	);
     }
-    ```
-    </p>
+
+````
+</p>
 
   </details>
 
@@ -85,7 +86,7 @@ import { useRouter } from 'next/router';
 <p>
   This project uses <a href="https://firebase.google.com">Firebase Auth</a> and includes a convenient <code>useAuth</code> hook (located in <code><a href="src/util/auth.js">src/util/auth.js</a></code>) that wraps Firebase and gives you common authentication methods. Depending on your needs you may want to edit this file and expose more Firebase functionality.
 
-```js
+```jsx
 import { useAuth } from './../util/auth.js';
 
 function MyComponent(){
@@ -104,7 +105,7 @@ function MyComponent(){
     </div>
   );
 }
-```
+````
 
 </p>
 </details>
@@ -115,7 +116,7 @@ function MyComponent(){
 <p>
   This project uses <a href="https://firebase.google.com/products/firestore">Cloud Firestore</a> and includes some data fetching hooks to get you started (located in <code><a href="src/util/db.js">src/util/db.js</a></code>). You'll want to edit that file and add any additional query hooks you need for your project.
 
-```js
+```jsx
 import { useAuth } from './../util/auth.js';
 import { useItemsByOwner } from './../util/db.js';
 import ItemsList from './ItemsList.js';
@@ -174,6 +175,7 @@ vercel --prod
 ```
 
 See the <a target="_blank" href="https://vercel.com/docs/v2/platform/deployments">Vercel docs</a> for more details.
+
 </p>
 
   </details>
