@@ -1,8 +1,7 @@
 ## 👉 Get Started
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -223,12 +222,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://tapanawasthi.dev"><img src="https://avatars1.githubusercontent.com/u/40211415?v=4" width="100px;" alt=""/><br /><sub><b>tap0212</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=tap0212" title="Code">💻</a></td>
     <td align="center"><a href="https://viralsangani.me/"><img src="https://avatars2.githubusercontent.com/u/36530381?v=4" width="100px;" alt=""/><br /><sub><b>Viral Sangani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=viral-sangani" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/jaynilgaglani/"><img src="https://avatars2.githubusercontent.com/u/48921037?v=4" width="100px;" alt=""/><br /><sub><b>Jaynil Gaglani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Jaynil1611" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Harshi7016"><img src="https://avatars0.githubusercontent.com/u/44545218?v=4" width="100px;" alt=""/><br /><sub><b>Harshith Venkatesh</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Harshi7016" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
