@@ -1,6 +1,9 @@
 ## 👉 Get Started
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -28,16 +31,28 @@ When the above command completes you'll be able to view your website at `http://
 
 This project uses the following libraries and services:
 
--   Framework - [Next.js](https://nextjs.org)
--   UI Kit - [Bulma](https://bulma.io)
--   Authentication - [Firebase Auth](https://firebase.google.com/products/auth)
--   Newsletter - [Mailchimp](https://mailchimp.com)
--   Analytics - [Google Analytics](https://googleanalytics.com)
--   Hosting - [Vercel](https://vercel.com)
+- Framework - [Next.js](https://nextjs.org)
+- UI Kit - [Bulma](https://bulma.io)
+- Authentication - [Firebase Auth](https://firebase.google.com/products/auth)
+- Newsletter - [Mailchimp](https://mailchimp.com)
+- Analytics - [Google Analytics](https://googleanalytics.com)
+- Hosting - [Vercel](https://vercel.com)
 
 ## Contribution
 
 Checkout this issue to get started (https://github.com/makerdock/devcom/issues/15)
+
+## Setting up the Project
+
+- Fork the repo and clone it to your local machine.
+- For the project to work you have to setup a firebase project.
+  Create a Project from the [firebase console](https://console.firebase.google.com/).
+
+- Enable firestore in your project and firebase auth (google and sign-in password) in your firebase console.
+- Once that is done, duplicate the .env.example file and rename it to just .env. Grab the keys from firebase console and paste it in the .env file.
+- Run `npm install` to install the dependencies and `npm run dev` to start the project. More details are available in the guide section.
+- To check your local deployment, login to [vercel](https://vercel.app) and link your github repo that you forked to it.
+- Whitelist vercel domains on your firebase auth Authorized Domains as well.
 
 ## 📚 Guide
 
@@ -55,31 +70,33 @@ Checkout this issue to get started (https://github.com/makerdock/devcom/issues/1
     <summary><b>Routing</b></summary>
     <p>
       This project uses the built-in Next.js router and its convenient <code>useRouter</code> hook. Learn more in the <a target="_blank" href="https://github.com/zeit/next.js/#routing">Next.js docs</a>.
-    
+
 ```jsx
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-function MyComponent(){
-	// Get the router object
-	const router = useRouter();
+function MyComponent() {
+  // Get the router object
+  const router = useRouter();
 
-    // Get value from query string (?postId=123) or route param (/:postId)
-    console.log(router.query.postId);
+  // Get value from query string (?postId=123) or route param (/:postId)
+  console.log(router.query.postId);
 
-    // Get current pathname
-    console.log(router.pathname)
+  // Get current pathname
+  console.log(router.pathname);
 
-    // Navigate with the <Link> component or with router.push()
-    return (
-        <div>
-          	<Link href="/about"><a>About</a></Link>
-          	<button onClick={(e) => router.push('/about')}>About</button>
-        </div>
-      	);
-    }
+  // Navigate with the <Link> component or with router.push()
+  return (
+    <div>
+      <Link href="/about">
+        <a>About</a>
+      </Link>
+      <button onClick={(e) => router.push("/about")}>About</button>
+    </div>
+  );
+}
+```
 
-````
 </p>
 
   </details>
@@ -90,9 +107,9 @@ function MyComponent(){
   This project uses <a href="https://firebase.google.com">Firebase Auth</a> and includes a convenient <code>useAuth</code> hook (located in <code><a href="src/util/auth.js">src/util/auth.js</a></code>) that wraps Firebase and gives you common authentication methods. Depending on your needs you may want to edit this file and expose more Firebase functionality.
 
 ```jsx
-import { useAuth } from './../util/auth.js';
+import { useAuth } from "./../util/auth.js";
 
-function MyComponent(){
+function MyComponent() {
   // Get the auth object in any component
   const auth = useAuth();
 
@@ -103,16 +120,18 @@ function MyComponent(){
       {auth.user ? (
         <button onClick={(e) => auth.signout()}>Signout</button>
       ) : (
-        <button onClick={(e) => auth.signin('hello@divjoy.com', 'yolo')}>Signin</button>
+        <button onClick={(e) => auth.signin("hello@divjoy.com", "yolo")}>
+          Signin
+        </button>
       )}
     </div>
   );
 }
-````
+```
 
 </p>
 </details>
-  
+
   <details>
 <summary><b>Database</b></summary>
 
@@ -209,6 +228,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
