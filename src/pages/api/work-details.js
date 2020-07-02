@@ -1,4 +1,4 @@
-import { getWorkDetailsFromServer } from "util/serverDb";
+import { getWorkDetailsFromServer } from "../../util/serverDb";
 
 export default async (req, res) => {
   const workId = req.query.workId;
