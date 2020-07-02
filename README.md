@@ -1,6 +1,6 @@
 ## 👉 Get Started
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -203,6 +203,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://sreetamdas.com"><img src="https://avatars3.githubusercontent.com/u/11270438?v=4" width="100px;" alt=""/><br /><sub><b>Sreetam Das</b></sub></a><br /><a href="#content-sreetamdas" title="Content">🖋</a> <a href="https://github.com/makerdock/devcom/commits?author=sreetamdas" title="Code">💻</a> <a href="#ideas-sreetamdas" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/Utkarshbhimte"><img src="https://avatars1.githubusercontent.com/u/13379773?v=4" width="100px;" alt=""/><br /><sub><b>Utkarsh Bhimte</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Utkarshbhimte" title="Code">💻</a> <a href="#ideas-Utkarshbhimte" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://tapanawasthi.dev"><img src="https://avatars1.githubusercontent.com/u/40211415?v=4" width="100px;" alt=""/><br /><sub><b>tap0212</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=tap0212" title="Code">💻</a></td>
+    <td align="center"><a href="https://viralsangani.me/"><img src="https://avatars2.githubusercontent.com/u/36530381?v=4" width="100px;" alt=""/><br /><sub><b>Viral Sangani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=viral-sangani" title="Code">💻</a></td>
   </tr>
 </table>
 
