@@ -37,7 +37,7 @@ This project uses the following libraries and services:
 
 ## Contribution
 
-Currently, you can just add your name to CONTRIBUTORS.md and when raise a PR. I will be adding some tasks which you can assign to yourself and get started with it.
+Checkout this issue to get started (https://github.com/makerdock/devcom/issues/15)
 
 ## 📚 Guide
 
