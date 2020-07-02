@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "sreetamdas",
+      "name": "Sreetam Das",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11270438?v=4",
+      "profile": "https://sreetamdas.com",
+      "contributions": [
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "devcom",
+  "projectOwner": "makerdock",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
