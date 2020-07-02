@@ -4,11 +4,7 @@ import { useUser, firestore } from "util/db";
 
 import commentIcon from "../../assets/message-square.svg";
 import Link from "next/link";
-
-const dateFormateOptions = { month: "long", day: "numeric", year: "numeric" };
-export function formatDate(date) {
-  return new Intl.DateTimeFormat("en-US", dateFormateOptions).format(date);
-}
+import { formatDate } from "util/date";
 
 const UserDetailChip = ({ userId, createdTime }) => {
   const query = useUser(userId);
@@ -47,7 +43,7 @@ const HomePageFeedCard = ({ data }) => {
         </div>
         <div className="column">
           <Link href={`/work/${data.id}`}>
-            <button class="button">
+            <button className="button">
               <img src={commentIcon} />
             </button>
           </Link>

@@ -1,2 +1,15 @@
 .comment-section {
+  display: grid;
+  grid-gap: 2rem;
+  margin-top: 3rem;
+
+  .comment-row {
+    display: grid;
+    grid-gap: 1.2rem;
+    grid-template-columns: 2rem 1fr;
+
+    .comment-content {
+      margin-bottom: 1rem;
+    }
+  }
 }

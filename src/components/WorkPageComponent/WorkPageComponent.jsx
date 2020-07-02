@@ -16,17 +16,19 @@ const CommentInput = ({ workId }) => {
     if (!(text && !!text.length)) {
       return;
     }
+    inputRef.current.value = "";
 
     try {
       setLoading(true);
       await createComment(workId, text, user.uid);
     } catch (error) {
       console.error(error);
+      inputRef.current.value = text;
     } finally {
       setLoading(false);
     }
   };
-  return (
+  return user ? (
     <form className="input-wrapper" onSubmit={handleSubmit}>
       {user && (
         <img className="avatar" src={user.photoURL} alt="Placeholder image" />
@@ -37,12 +39,15 @@ const CommentInput = ({ workId }) => {
         placeholder="Share your thoughts on this project"
       ></textarea>
       <button
+        className="primary-action"
         type="submit"
         className={`button is-primary ${loading ? "is-loading" : ""}`}
       >
         Send
       </button>
     </form>
+  ) : (
+    <div className="primary-action">Login now to join the discussion</div>
   );
 };
 

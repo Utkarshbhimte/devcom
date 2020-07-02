@@ -50,7 +50,7 @@ service cloud.firestore {
       //allow read: if isOwner(); // Would restrict reads to just the item owner
       allow delete: if isOwner();
       allow update: if isOwner() && willBeOwner();
-      allow create: if willBeOwner();
+      allow create: if request.auth.uid != null;
     }
   }
 }
