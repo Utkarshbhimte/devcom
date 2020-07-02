@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomePageFeedCard.scss";
-import { useUser } from "util/db";
+import { useUser, firestore } from "util/db";
 
 import commentIcon from "../../assets/message-square.svg";
 import Link from "next/link";
@@ -10,9 +10,27 @@ export function formatDate(date) {
   return new Intl.DateTimeFormat("en-US", dateFormateOptions).format(date);
 }
 
-const HomePageFeedCard = ({ data }) => {
-  const { data: userData = {} } = useUser(data.owner);
+const UserDetailChip = ({ userId, createdTime }) => {
+  const query = useUser(userId);
+  return (
+    <div className="media">
+      <div className="media-left">
+        <figure className="image is-48x48">
+          <img
+            src={query.data && query.data.photoURL}
+            alt="Placeholder image"
+          />
+        </figure>
+      </div>
+      <div className="media-content">
+        <p>{query.data && query.data.displayName}</p>
+        <span>{formatDate(createdTime)}</span>
+      </div>
+    </div>
+  );
+};
 
+const HomePageFeedCard = ({ data }) => {
   return (
     <div className="home-page-feed-card">
       <div className="heading">{data.type}</div>
@@ -22,17 +40,10 @@ const HomePageFeedCard = ({ data }) => {
       )}
       <div className="columns is-vcentered">
         <div className="column is-10">
-          <div className="media">
-            <div className="media-left">
-              <figure className="image is-48x48">
-                <img src={userData.photoURL} alt="Placeholder image" />
-              </figure>
-            </div>
-            <div className="media-content">
-              <p>{userData.displayName}</p>
-              <span>{formatDate(data.created.seconds * 1000)}</span>
-            </div>
-          </div>
+          <UserDetailChip
+            createdTime={data.created.seconds * 1000}
+            userId={data.owner}
+          />
         </div>
         <div className="column">
           <Link href={`/work/${data.id}`}>
