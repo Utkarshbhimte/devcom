@@ -200,7 +200,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://sreetamdas.com"><img src="https://avatars3.githubusercontent.com/u/11270438?v=4" width="100px;" alt=""/><br /><sub><b>Sreetam Das</b></sub></a><br /><a href="#content-sreetamdas" title="Content">🖋</a> <a href="https://github.com/makerdock/devcom/commits?author=sreetamdas" title="Code">💻</a></td>
+    <td align="center"><a href="https://sreetamdas.com"><img src="https://avatars3.githubusercontent.com/u/11270438?v=4" width="100px;" alt=""/><br /><sub><b>Sreetam Das</b></sub></a><br /><a href="#content-sreetamdas" title="Content">🖋</a> <a href="https://github.com/makerdock/devcom/commits?author=sreetamdas" title="Code">💻</a> <a href="#ideas-sreetamdas" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/Utkarshbhimte"><img src="https://avatars1.githubusercontent.com/u/13379773?v=4" width="100px;" alt=""/><br /><sub><b>Utkarsh Bhimte</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Utkarshbhimte" title="Code">💻</a></td>
   </tr>
 </table>
