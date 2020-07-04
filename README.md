@@ -1,6 +1,8 @@
 # Makerdock
 A platform for developer so share and discuss their projects
 
+## How to start contributing?
+Checkout this issue to get started (https://github.com/makerdock/devcom/issues/15)
 
 ## 👉 Get Started
 
@@ -39,10 +41,6 @@ This project uses the following libraries and services:
 - Newsletter - [Mailchimp](https://mailchimp.com)
 - Analytics - [Google Analytics](https://googleanalytics.com)
 - Hosting - [Vercel](https://vercel.com)
-
-## How to start contributing?
-
-Checkout this issue to get started (https://github.com/makerdock/devcom/issues/15)
 
 ## Setting up the Project
 
