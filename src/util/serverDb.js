@@ -1,5 +1,9 @@
 import admin from "firebase-admin";
 
+if (!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
+  throw new Error("Firebase service account is not implemented properly");
+}
+
 try {
   admin.initializeApp({
     credential: admin.credential.cert({
