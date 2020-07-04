@@ -6,6 +6,8 @@
     "divjoy"
   ],
   "dependencies": {
+    "@sentry/browser": "^5.1.0",
+    "@zeit/next-source-maps": "0.0.4-canary.1",
     "@analytics/google-analytics": "0.2.2",
     "@zeit/next-sass": "0.2.1-canary.4",
     "analytics": "0.3.1",
