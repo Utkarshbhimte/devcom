@@ -1,3 +1,7 @@
+# Makerdock
+A platform for developer so share and discuss their projects
+
+
 ## 👉 Get Started
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
