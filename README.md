@@ -40,7 +40,7 @@ This project uses the following libraries and services:
 - Analytics - [Google Analytics](https://googleanalytics.com)
 - Hosting - [Vercel](https://vercel.com)
 
-## Contribution
+## How to start contributing?
 
 Checkout this issue to get started (https://github.com/makerdock/devcom/issues/15)
 
