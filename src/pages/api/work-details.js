@@ -1,9 +1,13 @@
 import { getWorkDetailsFromServer } from "../../util/serverDb";
 
 export default async (req, res) => {
-  const workId = req.query.workId;
+  try {
+    const workId = req.query.workId;
 
-  const response = await getWorkDetailsFromServer(workId);
+    const response = await getWorkDetailsFromServer(workId);
 
-  res.send({ data: response });
+    res.send({ data: response });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
