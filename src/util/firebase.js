@@ -4,12 +4,13 @@ import "firebase/firestore";
 
 // Make sure it hasn't already been initialized
 if (!firebase.apps.length) {
-  firebase.initializeApp({
+  const config = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
-  });
+  };
+  firebase.initializeApp(config);
 }
 
 export default firebase;

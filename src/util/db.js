@@ -76,10 +76,19 @@ export function updateWork(id, data) {
     });
 }
 
-export function createComment(workId, text, author) {
+export function updateComment({ workId, text, commentId }) {
+  return firestore.doc(`works/${workId}/comments/${commentId}`).update({
+    text,
+    updated: firebase.firestore.FieldValue.serverTimestamp(),
+  });
+}
+
+export function createComment(workId, text, owner) {
   return firestore.collection(`works/${workId}/comments`).add({
     text,
-    author,
+    owner,
+    workId,
+    updated: firebase.firestore.FieldValue.serverTimestamp(),
     created: firebase.firestore.FieldValue.serverTimestamp(),
   });
 }
