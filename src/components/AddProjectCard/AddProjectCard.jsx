@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./AddProjectCard.scss";
-import { createWork, updateWork } from "util/db";
+import { createWork, updateWork, deleteWork } from "util/db";
 import { useAuth } from "util/auth";
 
 export const ProjectFormModal = ({ defaultValue = {}, children, title }) => {
@@ -25,6 +25,11 @@ export const ProjectFormModal = ({ defaultValue = {}, children, title }) => {
         .map((a) => a.trim())
         .filter((a) => !!a.length)
     );
+  };
+
+  const handleDelete = () => {
+    setShowForm(false);
+    deleteWork({ workId: defaultValue.id });
   };
 
   const handleSubmit = async (event) => {
@@ -138,6 +143,11 @@ export const ProjectFormModal = ({ defaultValue = {}, children, title }) => {
               </div>
             </div>
             <div className="buttons">
+              {defaultValue.id && (
+                <div onClick={handleDelete} className="button is-danger">
+                  Delete
+                </div>
+              )}
               <div onClick={handleToggle} className="button">
                 Cancel
               </div>

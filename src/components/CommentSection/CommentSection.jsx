@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./CommentSection.scss";
 import { useComments, useUser, firestore, updateComment } from "util/db";
 import { formatDate } from "util/date";
+import { useAuth } from "util/auth";
 
 const loadingState = {
   delete: "Delete",
@@ -9,6 +10,7 @@ const loadingState = {
   comment: "Comment",
 };
 const CommentCell = ({ comment }) => {
+  const { user } = useAuth();
   const { data: authorData } = useUser(comment.owner);
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(null);
@@ -23,9 +25,7 @@ const CommentCell = ({ comment }) => {
     setLoading(loadingState.delete);
 
     try {
-      await firestore
-        .doc(["works", comment.workId, "comments", comment.id].join("/"))
-        .delete();
+      await deleteComment({ workId: comment.workId, commentId: comment.id });
     } catch (error) {
       console.error(error);
     } finally {
@@ -101,23 +101,27 @@ const CommentCell = ({ comment }) => {
             </button>
           </form>
         )}
-        <div className="comment-actions">
-          <a
-            className=" comment-action-btn"
-            role="button"
-            onClick={editComment}
-          >
-            Edit
-          </a>
-          <a
-            className={`delete-btn comment-action-btn ${
-              loading === loadingState.delete ? "is-loading" : ""
-            }`}
-            role="button"
-            onClick={deleteComment}
-          >
-            Delete
-          </a>
+        <div className="comment-footer">
+          {!!user && (
+            <span className="comment-actions">
+              <a
+                className=" comment-action-btn"
+                role="button"
+                onClick={editComment}
+              >
+                Edit
+              </a>
+              <a
+                className={`delete-btn comment-action-btn ${
+                  loading === loadingState.delete ? "is-loading" : ""
+                }`}
+                role="button"
+                onClick={deleteComment}
+              >
+                Delete
+              </a>
+            </span>
+          )}
           {comment.created && (
             <small className="timestamp">
               {formatDate(comment.created.seconds * 1000)}

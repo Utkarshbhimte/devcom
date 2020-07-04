@@ -76,6 +76,16 @@ export function updateWork(id, data) {
     });
 }
 
+export const deleteWork = ({ workId }) => {
+  return firestore.doc(["works", workId].join("/")).delete();
+};
+
+export const deleteComment = ({ workId, commentId }) => {
+  return firestore
+    .doc(["works", workId, "comments", commentId].join("/"))
+    .delete();
+};
+
 export function updateComment({ workId, text, commentId }) {
   return firestore.doc(`works/${workId}/comments/${commentId}`).update({
     text,

@@ -60,9 +60,9 @@ function AuthSocial(props) {
             {props.buttonText} with {providerDisplayNames[provider]}
           </span>
 
-          {provider === lastUsed && (
+          {/* {provider === lastUsed && (
             <span className="AuthSocial__tag tag is-warning">Last used</span>
-          )}
+          )} */}
         </button>
       ))}
     </div>

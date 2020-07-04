@@ -30,21 +30,21 @@ function Auth(props) {
         ></FormAlert>
       )}
 
-      <AuthForm
+      {/* <AuthForm
         type={props.type}
         typeValues={props.typeValues}
         parentColor={props.parentColor}
         onAuth={handleAuth}
         onFormAlert={handleFormAlert}
-      ></AuthForm>
+      ></AuthForm> */}
 
       {["signup", "signin"].includes(props.type) && (
         <>
           {props.providers && props.providers.length && (
             <>
-              <div className="Auth__social-divider has-text-centered is-size-7">
+              {/* <div className="Auth__social-divider has-text-centered is-size-7">
                 OR
-              </div>
+              </div> */}
               <AuthSocial
                 type={props.type}
                 buttonText={props.typeValues.buttonText}
@@ -61,10 +61,10 @@ function Auth(props) {
             </>
           )}
 
-          <AuthFooter
+          {/* <AuthFooter
             type={props.type}
             typeValues={props.typeValues}
-          ></AuthFooter>
+          ></AuthFooter> */}
         </>
       )}
     </>

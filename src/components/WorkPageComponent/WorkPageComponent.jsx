@@ -11,10 +11,24 @@ const WorkPageComponent = ({ data }) => {
           <h3 className="title is-3">{data.title}</h3>
           <p className="project-desc">{data.desc}</p>
           <div className="buttons">
-            {data.blogLink && <button className="button">Read it</button>}
-            {data.codeLink && <button className="button">Code</button>}
-            {data.projectLink && (
-              <button className="button is-primary">Checkout the App</button>
+            {data.blogLink && data.blogLink.length && (
+              <a href={data.blogLink} target="_blank" className="button">
+                Read it
+              </a>
+            )}
+            {data.codeLink && data.codeLink.length && (
+              <a href={data.codeLink} target="_blank" className="button">
+                Code
+              </a>
+            )}
+            {data.projectLink && data.projectLink.length && (
+              <a
+                href={data.projectLink}
+                target="_blank"
+                className="button is-primary"
+              >
+                Checkout the App
+              </a>
             )}
           </div>
         </div>
