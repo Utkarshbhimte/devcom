@@ -1,4 +1,6 @@
 import React from "react";
+import * as Sentry from "@sentry/browser";
+
 import "styles/global.scss";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
@@ -7,7 +9,7 @@ import { ProvideAuth } from "util/auth.js";
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   Sentry.init({
-    dsn: "ENTER_YOUR_SENTRY_DSN_HERE",
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   });
 }
 class MyApp extends React.Component {
