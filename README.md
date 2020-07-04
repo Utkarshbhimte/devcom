@@ -7,7 +7,7 @@ Checkout this issue to get started (https://github.com/makerdock/devcom/issues/1
 ## 👉 Get Started
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -225,6 +225,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://viralsangani.me/"><img src="https://avatars2.githubusercontent.com/u/36530381?v=4" width="100px;" alt=""/><br /><sub><b>Viral Sangani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=viral-sangani" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/jaynilgaglani/"><img src="https://avatars2.githubusercontent.com/u/48921037?v=4" width="100px;" alt=""/><br /><sub><b>Jaynil Gaglani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Jaynil1611" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Harshi7016"><img src="https://avatars0.githubusercontent.com/u/44545218?v=4" width="100px;" alt=""/><br /><sub><b>Harshith Venkatesh</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Harshi7016" title="Code">💻</a> <a href="#ideas-Harshi7016" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/vineeth-cnbr"><img src="https://avatars0.githubusercontent.com/u/24208203?v=4" width="100px;" alt=""/><br /><sub><b>Vineeth Chandran</b></sub></a><br /><a href="#projectManagement-vineeth-cnbr" title="Project Management">📆</a> <a href="https://github.com/makerdock/devcom/commits?author=vineeth-cnbr" title="Code">💻</a></td>
   </tr>
 </table>
 
