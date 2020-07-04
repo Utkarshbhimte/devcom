@@ -23,7 +23,10 @@
       margin-bottom: 1rem;
     }
 
-    .comment-actions {
+    .comment-footer {
+      .comment-actions {
+        margin-right: 1rem;
+      }
       .comment-action-btn {
         display: inline-block;
         min-width: 3rem;
@@ -32,10 +35,6 @@
       }
       .delete-btn {
         color: $danger;
-      }
-
-      .timestamp {
-        margin-left: 1rem;
       }
     }
   }
