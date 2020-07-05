@@ -1,7 +1,11 @@
 import React from "react";
+import Router from "next/router";
+import NProgress from "nprogress"; //nprogress module
 import * as Sentry from "@sentry/browser";
 
 import "styles/global.scss";
+import "styles/PageLoader.scss";
+
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import "util/analytics.js";
@@ -12,6 +16,12 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   });
 }
+
+//Binding events.
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
+
 class MyApp extends React.Component {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
