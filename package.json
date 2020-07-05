@@ -1,9 +1,9 @@
 {
-  "name": "my-divjoy-project",
+  "name": "devcom",
   "version": "0.1.0",
   "private": true,
   "keywords": [
-    "divjoy"
+    "developers","platform"
   ],
   "dependencies": {
     "@analytics/google-analytics": "0.2.2",
