@@ -209,6 +209,9 @@ See the <a target="_blank" href="https://vercel.com/docs/v2/platform/deployments
       This project was initially created using <a href="https://divjoy.com?ref=readme_other">Divjoy</a>, a React codebase generator. Feel free to ask questions in the <a href="https://spectrum.chat/divjoy">Divjoy forum</a> and we'll do our best to help you out.
     </p>
   </details>
+  
+## Wireframes
+https://whimsical.com/XpTV7oZ7vXzXPuLj6q8mFc
 
 ## Contributors ✨
 
