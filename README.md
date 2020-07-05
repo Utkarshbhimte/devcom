@@ -16,12 +16,13 @@ Install dependencies
 npm install
 ```
 
-Update your `.env` file with values for each environment variable
+Create a file `.env`, copy the contents from `.env.example`.
 
 ```
-API_KEY=AIzaSyBkkFF0XhNZeWuDmOfEhsgdfX1VBG7WTas
-etc ...
+cp .env.example .env
 ```
+Create a firebase project, check [this](https://www.notion.so/Divjoy-Firebase-Guide-3c64683bcf7b4b0693b80e06d67c9ee0) for more info. 
+You would have to enable firestore, firebase google auth and create a service account and copy the values to the `.env` file.
 
 Run the development server
 
@@ -209,6 +210,9 @@ See the <a target="_blank" href="https://vercel.com/docs/v2/platform/deployments
       This project was initially created using <a href="https://divjoy.com?ref=readme_other">Divjoy</a>, a React codebase generator. Feel free to ask questions in the <a href="https://spectrum.chat/divjoy">Divjoy forum</a> and we'll do our best to help you out.
     </p>
   </details>
+  
+## Wireframes
+https://whimsical.com/XpTV7oZ7vXzXPuLj6q8mFc
 
 ## Contributors ✨
 

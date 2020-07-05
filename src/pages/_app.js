@@ -1,5 +1,6 @@
 import React from "react";
 import Router from "next/router";
+import Head from "next/head";
 import NProgress from "nprogress"; //nprogress module
 import * as Sentry from "@sentry/browser";
 
@@ -11,6 +12,7 @@ import Footer from "components/Footer";
 import "util/analytics.js";
 import { ProvideAuth } from "util/auth.js";
 import { DefaultSeo } from "next-seo";
+import logo from "../assets/logo-with-text.svg";
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   Sentry.init({
@@ -50,6 +52,9 @@ class MyApp extends React.Component {
     const { Component, pageProps } = this.props;
     return (
       <ProvideAuth>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.png" />
+        </Head>
         <DefaultSeo
           title="Devcom | A platform for devs to showcase their projects"
           description="A platform for devs to showcase their projects"
@@ -66,11 +71,7 @@ class MyApp extends React.Component {
           }}
         />
         <>
-          <Navbar
-            color="white"
-            spaced={true}
-            logo="https://uploads.divjoy.com/logo.svg"
-          ></Navbar>
+          <Navbar color="white" spaced={true} logo={logo}></Navbar>
 
           <Component {...pageProps} />
 
@@ -80,7 +81,7 @@ class MyApp extends React.Component {
             backgroundImage=""
             backgroundImageOpacity={1}
             copyright="© 2019 Company"
-            logo="https://uploads.divjoy.com/logo.svg"
+            logo={logo}
           ></Footer>
         </>
       </ProvideAuth>
