@@ -3,6 +3,7 @@ import "./WorkPage.scss";
 import CommentSection from "components/CommentSection/CommentSection";
 import { CommentInput } from "./CommentInput";
 import { formatDate } from "util/date";
+import Link from "next/link";
 
 const WorkPageComponent = ({ data }) => {
   console.log("WorkPageComponent -> data", data);
@@ -13,20 +14,23 @@ const WorkPageComponent = ({ data }) => {
         <div className="container">
           <h3 className="title is-3">{data.title}</h3>
           <p className="project-desc">{data.desc}</p>
-          <div className="media owner-details">
-            <div className="media-left">
-              <figure className="image is-48x48">
-                <img
-                  src={data.ownerData.photoURL}
-                  alt={data.ownerData.displayName}
-                />
-              </figure>
+
+          <Link href={`/dev/${data.owner}`}>
+            <div className="media owner-details">
+              <div className="media-left">
+                <figure className="image is-48x48">
+                  <img
+                    src={data.ownerData.photoURL}
+                    alt={data.ownerData.displayName}
+                  />
+                </figure>
+              </div>
+              <div className="media-content">
+                <p>{data.ownerData.displayName}</p>
+                <span>{formatDate(data.created._seconds * 1000)}</span>
+              </div>
             </div>
-            <div className="media-content">
-              <p>{data.ownerData.displayName}</p>
-              <span>{formatDate(data.created._seconds * 1000)}</span>
-            </div>
-          </div>
+          </Link>
 
           <div className="buttons">
             {data.blogLink && data.blogLink.length && (
