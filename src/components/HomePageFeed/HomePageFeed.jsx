@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomePageFeed.scss";
-import HomePageFeedCard from "components/HomePageFeedCard/HomePageFeedCard";
 import { useFeedData } from "util/db";
+import HomePageFeedCard from "components/HomePageFeedCard/HomePageFeedCard";
 
 const HomePageFeed = () => {
   const feedQuery = useFeedData();

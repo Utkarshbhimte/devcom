@@ -1,9 +1,22 @@
 import React from "react";
 import WorkPageComponent from "components/WorkPageComponent/WorkPageComponent";
 import { fetchRelative } from "util/fetchRelative";
+import { NextSeo } from "next-seo";
 
 const WorkPage = ({ data }) => {
-  return <WorkPageComponent data={data} />;
+  return (
+    <>
+      <NextSeo
+        title={`${data.title} | Devcom`}
+        description={
+          !!data.desc.length
+            ? data.desc
+            : `A ${data.type} by ${data.ownerData.displayName}`
+        }
+      />
+      <WorkPageComponent data={data} />
+    </>
+  );
 };
 
 export async function getServerSideProps({ req, query }) {

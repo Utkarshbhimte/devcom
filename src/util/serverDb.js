@@ -34,5 +34,9 @@ const db = admin.firestore();
 export const getWorkDetailsFromServer = async (workId) => {
   const doc = await db.doc(`works/${workId}`).get();
   const data = doc.data();
+
+  const ownerDoc = await db.doc(`users/${data.owner}`).get();
+  data.ownerData = ownerDoc.data();
+
   return data;
 };

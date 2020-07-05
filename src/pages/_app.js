@@ -10,6 +10,7 @@ import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import "util/analytics.js";
 import { ProvideAuth } from "util/auth.js";
+import { DefaultSeo } from "next-seo";
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   Sentry.init({
@@ -49,6 +50,21 @@ class MyApp extends React.Component {
     const { Component, pageProps } = this.props;
     return (
       <ProvideAuth>
+        <DefaultSeo
+          title="Devcom | A platform for devs to showcase their projects"
+          description="A platform for devs to showcase their projects"
+          openGraph={{
+            type: "website",
+            locale: "en_IE",
+            url: "https://devcom.vercel.app/",
+            site_name: "Devcom",
+          }}
+          twitter={{
+            handle: "@bhimtebhaisaab",
+            // site: "@site",
+            // cardType: "summary_large_image",
+          }}
+        />
         <>
           <Navbar
             color="white"
