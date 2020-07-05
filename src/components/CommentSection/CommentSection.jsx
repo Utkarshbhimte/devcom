@@ -1,6 +1,12 @@
 import React, { useState, useRef } from "react";
 import "./CommentSection.scss";
-import { useComments, useUser, firestore, updateComment } from "util/db";
+import {
+  useComments,
+  useUser,
+  firestore,
+  updateComment,
+  deleteComment,
+} from "util/db";
 import { formatDate } from "util/date";
 import { useAuth } from "util/auth";
 
@@ -17,7 +23,7 @@ const CommentCell = ({ comment }) => {
   const [editMode, setEditMode] = useState(false);
 
   const editComment = () => setEditMode(true);
-  const deleteComment = async () => {
+  const handleDeleteButtonClick = async () => {
     if (!!loading) {
       return;
     }
@@ -38,7 +44,7 @@ const CommentCell = ({ comment }) => {
     const text = inputRef.current && inputRef.current.value;
 
     if (!(text && !!text.length)) {
-      deleteComment();
+      handleDeleteButtonClick();
       return;
     }
     inputRef.current.value = "";
@@ -105,18 +111,18 @@ const CommentCell = ({ comment }) => {
           {!!user && (
             <span className="comment-actions">
               <a
-                className=" comment-action-btn"
+                className=" comment-action-btn button is-white"
                 role="button"
                 onClick={editComment}
               >
                 Edit
               </a>
               <a
-                className={`delete-btn comment-action-btn ${
+                className={`delete-btn comment-action-btn button is-white ${
                   loading === loadingState.delete ? "is-loading" : ""
                 }`}
                 role="button"
-                onClick={deleteComment}
+                onClick={handleDeleteButtonClick}
               >
                 Delete
               </a>
