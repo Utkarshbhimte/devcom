@@ -1,11 +1,23 @@
 .dev-page-container {
-  .page-header {
-    padding: 3rem 0;
+  .page-projects {
+    .card {
+      padding: 1.5rem;
+    }
+
+    .tag {
+      margin: 0.1rem;
+    }
   }
-  .avatar {
-    border-radius: 1rem;
-    height: 7rem;
-    width: 7rem;
-    margin-right: 3rem;
+  .work-card-grid {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media screen and (min-width: 40em) {
+    .work-card-grid {
+      grid-gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
