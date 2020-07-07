@@ -1,5 +1,6 @@
 import React from 'react';
 import './DeveloperBlogCardComponent.scss';
+import externalLinkLogo from '../../assets/external-link.svg';
 
 const DeveloperBlogCardComponent = ({ blog }) => {
   let { title, desc, tags, blogLink } = blog;
@@ -8,24 +9,22 @@ const DeveloperBlogCardComponent = ({ blog }) => {
       <div className='content'>
         <div className='columns'>
           <div className='column is-four-fifth'>
-            <h3 class='blog-title'>{title}</h3>
+            <h3>{title}</h3>
           </div>
           <div className='column is-offset'>
             <a
-              class='popout-icon'
+              className='popout-icon'
               href={blogLink}
               target='_blank'
               rel='noopener noreferrer'
             >
-              <span className='icon'>
-                <i className='fas fa-external-link-alt'></i>
-              </span>
+              <img style={{ height: '1.3rem' }} src={externalLinkLogo}></img>
             </a>
           </div>
         </div>
         <p>{desc}</p>
         {tags.map((tag, index) => (
-          <span key={index} class='tag is-light'>
+          <span key={index} className='tag is-light'>
             {tag}
           </span>
         ))}

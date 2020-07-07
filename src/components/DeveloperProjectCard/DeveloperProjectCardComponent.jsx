@@ -1,15 +1,18 @@
 import React from 'react';
 import './DeveloperProjectCardComponent.scss';
+import githubLogo from '../../assets/github.svg';
 
 const DeveloperProjectCardComponent = ({ project }) => {
   let { title, desc, tags, projectLink, codeLink } = project;
   return (
     <div className='card dev-project-card'>
       <div className='content'>
-        <h3 className='title'>{title}</h3>
+        <h3>{title}</h3>
         <p>{desc}</p>
-        {tags.map((tag) => (
-          <span class='tag is-light'>{tag}</span>
+        {tags.map((tag, index) => (
+          <span key={index} className='tag is-light'>
+            {tag}
+          </span>
         ))}
         <br /> <br />
         <div className='columns'>
@@ -18,9 +21,7 @@ const DeveloperProjectCardComponent = ({ project }) => {
           </div>
           <div className='column github-logo'>
             <a href={codeLink} target='_blank' rel='noopener noreferrer'>
-              <span className='icon'>
-                <i className='fab fa-github fa-3x'></i>
-              </span>
+              <img src={githubLogo}></img>
             </a>
           </div>
         </div>

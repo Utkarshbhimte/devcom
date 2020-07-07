@@ -24,8 +24,10 @@ const DeveloperPageComponent = ({ data }) => {
           <div className='work-card-grid'>
             {data.works
               .filter((work) => work.type === 'project')
-              .map((work) => {
-                return <DeveloperProjectCardComponent project={work} />;
+              .map((work, index) => {
+                return (
+                  <DeveloperProjectCardComponent key={index} project={work} />
+                );
               })}
           </div>
         </div>
@@ -42,8 +44,8 @@ const DeveloperPageComponent = ({ data }) => {
           <div className='work-card-grid'>
             {data.works
               .filter((work) => work.type === 'blog')
-              .map((work) => {
-                return <DeveloperBlogCardComponent blog={work} />;
+              .map((work, index) => {
+                return <DeveloperBlogCardComponent key={index} blog={work} />;
               })}
           </div>
         </div>

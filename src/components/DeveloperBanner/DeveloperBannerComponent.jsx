@@ -1,5 +1,8 @@
 import React from 'react';
 import './DeveloperBannerComponent.scss';
+import facebookLogo from '../../assets/facebook.svg';
+import twitterLogo from '../../assets/twitter.svg';
+import instagramLogo from '../../assets/instagram.svg';
 
 const DeveloperBannerComponent = ({ data }) => {
   let { photoURL, displayName, tagline, projectLink } = data;
@@ -7,7 +10,7 @@ const DeveloperBannerComponent = ({ data }) => {
     <div className='card dev-banner'>
       <div className='columns'>
         <div className='column is-one-fifth'>
-          <img className='avatar level-item' src={photoURL} alt={displayName} />
+          <img className='avatar' src={photoURL} alt={displayName} />
         </div>
 
         <div className='column is-offset'>
@@ -22,27 +25,21 @@ const DeveloperBannerComponent = ({ data }) => {
               target='_blank'
               rel='noopener noreferrer'
             >
-              <span className='icon'>
-                <i className='fab fa-twitter'></i>
-              </span>
+              <img src={twitterLogo}></img>
             </a>
             <a
               href='https://facebook.com'
               target='_blank'
               rel='noopener noreferrer'
             >
-              <span className='icon'>
-                <i className='fab fa-facebook-f'></i>
-              </span>
+              <img src={facebookLogo}></img>
             </a>
             <a
               href='https://instagram.com'
               target='_blank'
               rel='noopener noreferrer'
             >
-              <span className='icon'>
-                <i className='fab fa-instagram'></i>
-              </span>
+              <img src={instagramLogo}></img>
             </a>
           </div>
         </div>
