@@ -21,9 +21,9 @@ try {
    * We skip the "already exists" message which is
    * not an actual error when we're hot-reloading.
    */
-  if (!/already exists/u.test(error.message)) {
+  if (error.code == "app/duplicate-app") {
     // eslint-disable-next-line no-console
-    console.error("Firebase admin initialization error", error.stack);
+    // console.error("Firebase admin initialization error", error.stack);
   } else {
     console.error(error);
   }
@@ -38,5 +38,18 @@ export const getWorkDetailsFromServer = async (workId) => {
   const ownerDoc = await db.doc(`users/${data.owner}`).get();
   data.ownerData = ownerDoc.data();
 
+  return data;
+};
+
+export const getDevDetailsFromServer = async (devId) => {
+  const doc = await db.doc(`users/${devId}`).get();
+  const data = doc.data();
+
+  const workData = await db
+    .collection(`works`)
+    .where("owner", "==", devId)
+    .get();
+
+  data.works = workData.docs.map((d) => d.data());
   return data;
 };
