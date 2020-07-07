@@ -2,7 +2,7 @@
 A platform for developer so share and discuss their projects
 
 ## How to start contributing?
-Checkout this issue to get started (https://github.com/makerdock/devcom/issues/15)
+Comment on any issue that you want to pick up
 
 ## 👉 Get Started
 
