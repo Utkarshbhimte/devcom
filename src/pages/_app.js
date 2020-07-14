@@ -20,6 +20,8 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   });
 }
 
+NProgress.configure({ showSpinner: false });
+
 //Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
