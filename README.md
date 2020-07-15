@@ -7,7 +7,7 @@ Comment on any issue that you want to pick up
 ## 👉 Get Started
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -223,13 +223,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://sreetamdas.com"><img src="https://avatars3.githubusercontent.com/u/11270438?v=4" width="100px;" alt=""/><br /><sub><b>Sreetam Das</b></sub></a><br /><a href="#content-sreetamdas" title="Content">🖋</a> <a href="https://github.com/makerdock/devcom/commits?author=sreetamdas" title="Code">💻</a> <a href="#ideas-sreetamdas" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/Utkarshbhimte"><img src="https://avatars1.githubusercontent.com/u/13379773?v=4" width="100px;" alt=""/><br /><sub><b>Utkarsh Bhimte</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Utkarshbhimte" title="Code">💻</a> <a href="#ideas-Utkarshbhimte" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="http://tapanawasthi.dev"><img src="https://avatars1.githubusercontent.com/u/40211415?v=4" width="100px;" alt=""/><br /><sub><b>tap0212</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=tap0212" title="Code">💻</a></td>
-    <td align="center"><a href="https://viralsangani.me/"><img src="https://avatars2.githubusercontent.com/u/36530381?v=4" width="100px;" alt=""/><br /><sub><b>Viral Sangani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=viral-sangani" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/jaynilgaglani/"><img src="https://avatars2.githubusercontent.com/u/48921037?v=4" width="100px;" alt=""/><br /><sub><b>Jaynil Gaglani</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Jaynil1611" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Harshi7016"><img src="https://avatars0.githubusercontent.com/u/44545218?v=4" width="100px;" alt=""/><br /><sub><b>Harshith Venkatesh</b></sub></a><br /><a href="https://github.com/makerdock/devcom/commits?author=Harshi7016" title="Code">💻</a> <a href="#ideas-Harshi7016" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/vineeth-cnbr"><img src="https://avatars0.githubusercontent.com/u/24208203?v=4" width="100px;" alt=""/><br /><sub><b>Vineeth Chandran</b></sub></a><br /><a href="#projectManagement-vineeth-cnbr" title="Project Management">📆</a> <a href="https://github.com/makerdock/devcom/commits?author=vineeth-cnbr" title="Code">💻</a></td>
+    <td align="center"><a href="https://sreetamdas.com"><img src="https://avatars3.githubusercontent.com/u/11270438?v=4" width="100px;" alt=""/><br /><sub><b>Sreetam Das</b></sub></a><br /><a href="#content-sreetamdas" title="Content">🖋</a> <a href="https://github.com/Utkarshbhimte/devcom/commits?author=sreetamdas" title="Code">💻</a> <a href="#ideas-sreetamdas" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/Utkarshbhimte"><img src="https://avatars1.githubusercontent.com/u/13379773?v=4" width="100px;" alt=""/><br /><sub><b>Utkarsh Bhimte</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=Utkarshbhimte" title="Code">💻</a> <a href="#ideas-Utkarshbhimte" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://tapanawasthi.dev"><img src="https://avatars1.githubusercontent.com/u/40211415?v=4" width="100px;" alt=""/><br /><sub><b>tap0212</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=tap0212" title="Code">💻</a></td>
+    <td align="center"><a href="https://viralsangani.me/"><img src="https://avatars2.githubusercontent.com/u/36530381?v=4" width="100px;" alt=""/><br /><sub><b>Viral Sangani</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=viral-sangani" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/jaynilgaglani/"><img src="https://avatars2.githubusercontent.com/u/48921037?v=4" width="100px;" alt=""/><br /><sub><b>Jaynil Gaglani</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=Jaynil1611" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Harshi7016"><img src="https://avatars0.githubusercontent.com/u/44545218?v=4" width="100px;" alt=""/><br /><sub><b>Harshith Venkatesh</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=Harshi7016" title="Code">💻</a> <a href="#ideas-Harshi7016" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/vineeth-cnbr"><img src="https://avatars0.githubusercontent.com/u/24208203?v=4" width="100px;" alt=""/><br /><sub><b>Vineeth Chandran</b></sub></a><br /><a href="#projectManagement-vineeth-cnbr" title="Project Management">📆</a> <a href="https://github.com/Utkarshbhimte/devcom/commits?author=vineeth-cnbr" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/deepansh946"><img src="https://avatars3.githubusercontent.com/u/20930667?v=4" width="100px;" alt=""/><br /><sub><b>Deepansh Bhargava</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=deepansh946" title="Code">💻</a></td>
   </tr>
 </table>
 
