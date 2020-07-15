@@ -72,11 +72,20 @@
         "projectManagement",
         "code"
       ]
+    },
+    {
+      "login": "deepansh946",
+      "name": "Deepansh Bhargava",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/20930667?v=4",
+      "profile": "https://github.com/deepansh946",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "devcom",
-  "projectOwner": "makerdock",
+  "projectOwner": "Utkarshbhimte",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true
