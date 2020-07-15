@@ -1,0 +1,18 @@
+.username-check {
+  display: flex !important;
+  .username-loader {
+    margin-left: 0.5rem;
+    margin-top: 0.25rem;
+  }
+}
+.username-right-align {
+  display: flex;
+  justify-content: right;
+}
+
+.work-card {
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px -10px #c3c3c3;
+  border: 1px solid #f2f2f2;
+}
