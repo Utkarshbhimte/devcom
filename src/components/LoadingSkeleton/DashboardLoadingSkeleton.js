@@ -5,7 +5,7 @@ function DashboardLoadingSkeleton() {
     return (
         <>
             <div className="dashboard-greet">
-                <Skeleton height={80} width={800} />
+                <Skeleton height={60} width={600} />
             </div>
 
             <div className="dashboard-projects">
