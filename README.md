@@ -7,7 +7,7 @@ Comment on any issue that you want to pick up
 ## 👉 Get Started
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -233,6 +233,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/deepansh946"><img src="https://avatars3.githubusercontent.com/u/20930667?v=4" width="100px;" alt=""/><br /><sub><b>Deepansh Bhargava</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=deepansh946" title="Code">💻</a></td>
+    <td align="center"><a href="https://mritunjaysaha.netlify.app"><img src="https://avatars2.githubusercontent.com/u/59063979?v=4" width="100px;" alt=""/><br /><sub><b>Mritunjay Saha</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=mritunjaysaha" title="Code">💻</a></td>
   </tr>
 </table>
 
