@@ -6,6 +6,7 @@
   }
 }
 .username-right-align {
+  padding-right: 1.5rem;
   display: flex;
   justify-content: right;
 }
@@ -15,4 +16,8 @@
   border-radius: 1rem;
   box-shadow: 0 0 20px -10px #c3c3c3;
   border: 1px solid #f2f2f2;
+
+  field {
+    padding-right: 1.5rem;
+  }
 }

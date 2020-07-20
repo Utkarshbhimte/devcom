@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from 'util/auth.js';
-import { updateUsername } from 'util/db';
+import {
+  alphanumericRegex,
+  consecutiveHyphenRegex,
+  endHypenRegex,
+  maxCharacterRegex,
+  checkRegexValid,
+} from '../../util/util';
 import './SetUsernameModal.scss';
 
 var inputTimer = null;
 const WAIT_INTERVAL = 2000; // wait time for which the user hasnt typed to check for username
-
-const acceptedUsernameRegex = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
-const alphanumericRegex = /[a-z\d-]+/i;
-const consecutiveHyphenRegex = /^(([a-z\d]+-[a-z\d]+)|[a-z\d])*$/i;
-const endHypenRegex = /^[a-z0-9].*(?<!-)$/i;
-const maxCharacterRegex = /^.{1,39}$/;
 
 const SetUsernameModal = () => {
   let { user } = useAuth();
@@ -19,15 +19,20 @@ const SetUsernameModal = () => {
 
   let { githubUsername, username: currentUsername } = user;
 
-  // currentUsername!='' works. if(currentUsername) doesnt always work.
-  if (user != false && currentUsername != '') return null;
+  if (user != false && currentUsername) return null;
 
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false); // For username validation flag
 
   const [usernameInput, setUsernameInput] = useState(githubUsername);
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(false);
-  const [isServerError, setIsServerError] = useState(false); // if upadate username causes an error.
+  const [isSubmitError, setIsSubmitError] = useState(false); // if update username causes an error.
+  const [submitErrorMessage, setSubmitErrorMessage] = useState('');
+  const [checkAlphanumic, setCheckAlphanumeric] = useState(false);
+  const [checkConsecutiveHyphen, setCheckConsecutiveHyphen] = useState(false);
+  const [checkEndHyphen, setCheckEndHyphen] = useState(false);
+  const [checkMaxCharacter, setCheckMaxCharacter] = useState(false);
+  const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
   //Called after the user is done checking for username availability.
   const onUsernameCheck = (result) => {
@@ -43,51 +48,96 @@ const SetUsernameModal = () => {
   // Checkd if the username is available or not
   const fetchUsernameCheck = (username) => {
     if (!username.length) return; //don't fetch username if input is empty
-    fetch(`/api/username?username=${username}`)
+    fetch(`/api/check-username?username=${username}`)
       .then((data) => data.json())
       .then(onUsernameCheck);
   };
 
   useEffect(() => {
+    // Check for username availability of github username
     fetchUsernameCheck(githubUsername);
+    // Check username validation for github username
+    setCheckAlphanumeric(checkRegexValid(githubUsername, alphanumericRegex));
+    setCheckConsecutiveHyphen(
+      checkRegexValid(githubUsername, consecutiveHyphenRegex)
+    );
+    setCheckEndHyphen(checkRegexValid(githubUsername, endHypenRegex));
+    setCheckMaxCharacter(checkRegexValid(githubUsername, maxCharacterRegex));
   }, []);
+
+  useEffect(() => {
+    if (usernameInput.length && !isLoading && isUsernameAvailable && !isError) {
+      let isUsernameValid =
+        checkAlphanumic &&
+        checkConsecutiveHyphen &&
+        checkEndHyphen &&
+        checkMaxCharacter;
+      setIsSubmitEnabled(isUsernameValid);
+    } else {
+      setIsSubmitEnabled(false);
+    }
+  }, [
+    checkAlphanumic,
+    checkConsecutiveHyphen,
+    checkEndHyphen,
+    checkMaxCharacter,
+    isLoading,
+    isUsernameAvailable,
+  ]);
 
   // Triggers whenever user types a new character in username box
   const onChangeUsername = (event) => {
     clearTimeout(inputTimer);
 
     setIsLoading(true);
-    let inputValue = event.target.value;
+    setIsSubmitError(false);
+    let input = event.target.value;
 
-    inputValue = inputValue.trim();
-    setUsernameInput(inputValue);
+    input = input.trim();
+
+    // Update usernameHook and regex validations for username
+    setUsernameInput(input);
+    setCheckAlphanumeric(checkRegexValid(input, alphanumericRegex));
+    setCheckConsecutiveHyphen(checkRegexValid(input, consecutiveHyphenRegex));
+    setCheckEndHyphen(checkRegexValid(input, endHypenRegex));
+    setCheckMaxCharacter(checkRegexValid(input, maxCharacterRegex));
 
     // Only check for username if the person has stopped typing.
     inputTimer = setTimeout(() => {
-      fetchUsernameCheck(inputValue);
+      fetchUsernameCheck(input);
     }, WAIT_INTERVAL);
   };
 
   //Triggered when user clicks submit
   const onSubmitUsername = (e) => {
     e.preventDefault();
-    // Match username to
-    if (usernameInput.match(acceptedUsernameRegex) && !isError) {
-      updateUsername(user.uid, usernameInput)
-        .then((data) => console.log('data', data))
-        .catch((error) => {
-          setIsServerError(true);
-          console.log(error);
-        });
-    } else setIsServerError(true);
+
+    let body = { username: usernameInput, uid: user.uid };
+    fetch(`/api/update-username`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+      .then((data) => data.json())
+      .catch((error) => {
+        setIsSubmitError(true);
+        setSubmitErrorMessage('Sorry! Something went wrong!');
+        console.log(error);
+      });
   };
 
-  //Checks the regex validation for the username
-  const renderCheckValidation = (regex) => {
-    if (usernameInput.length && usernameInput.match(regex)) {
+  //Display check or cross symbol based on check value
+  const renderCheckValidation = (check) => {
+    if (usernameInput.length === 0) return null;
+    if (check) {
       return (
         <span class='icon' style={{ color: '#0d0' }}>
           <i class='fas fa-check'></i>
+        </span>
+      );
+    } else {
+      return (
+        <span class='icon' style={{ color: 'red' }}>
+          <i class='fas fa-times'></i>
         </span>
       );
     }
@@ -158,30 +208,34 @@ const SetUsernameModal = () => {
               <ul>
                 <li>
                   Only contain alphanumeric characters or hyphens.
-                  {renderCheckValidation(alphanumericRegex)}
+                  {renderCheckValidation(checkAlphanumic)}
                 </li>
                 <li>
                   Cannot have multiple consecutive hyphens.
-                  {renderCheckValidation(consecutiveHyphenRegex)}
+                  {renderCheckValidation(checkConsecutiveHyphen)}
                 </li>
                 <li>
                   Cannot begin or end with a hyphen.
-                  {renderCheckValidation(endHypenRegex)}
+                  {renderCheckValidation(checkEndHyphen)}
                 </li>
                 <li>
                   Maximum 39 characters.
-                  {renderCheckValidation(maxCharacterRegex)}
+                  {renderCheckValidation(checkMaxCharacter)}
                 </li>
               </ul>
             </div>
-            {isServerError ? (
+            {isSubmitError ? (
               <div class='notification is-danger'>
-                Sorry something went wrong!
+                {submitErrorMessage || 'Sorry! Something went wrong'}
               </div>
             ) : null}
             <div className='field username-right-align'>
               <div class='control'>
-                <button class='button is-link' type='submit'>
+                <button
+                  class='button is-primary'
+                  type='submit'
+                  disabled={!isSubmitEnabled}
+                >
                   Submit
                 </button>
               </div>

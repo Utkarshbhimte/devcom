@@ -1,4 +1,11 @@
 import admin from "firebase-admin";
+import {
+    alphanumericRegex,
+    consecutiveHyphenRegex,
+    endHypenRegex,
+    maxCharacterRegex,
+    checkRegexValid,
+} from './util';
 
 if (!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
     throw new Error("Firebase service account is not implemented properly");
@@ -62,4 +69,15 @@ export const getUserByUsername = async (username) => {
     } catch (error) {
         throw error;
     }
+}
+
+export const updateUsernameByUid = async (uid, username) => {
+    try {
+        let isUsernameValid = checkRegexValid(username, alphanumericRegex) && checkRegexValid(username, consecutiveHyphenRegex) && checkRegexValid(username, endHypenRegex) && checkRegexValid(username, maxCharacterRegex)
+        if (!isUsernameValid) throw "Username not valid";
+        await db.collection('users').doc(uid).update({ username });
+    } catch (error) {
+        throw error
+    }
+
 }
