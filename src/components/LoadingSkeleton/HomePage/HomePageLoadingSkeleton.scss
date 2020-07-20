@@ -1,0 +1,21 @@
+.container {
+    // margin-top: 10%;
+    margin-left: 10%;
+}
+.post {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em 0;
+}
+
+.post-contents {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5em 0;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    margin: 0.2em 1em;
+}

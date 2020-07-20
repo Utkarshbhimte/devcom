@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { requireAuth } from "util/auth.js";
-import DashboardLoadingSkeleton from "../components/LoadingSkeleton/DashboardLoadingSkeleton";
+import DashboardLoadingSkeleton from "../components/LoadingSkeleton/Dashboard/DashboardLoadingSkeleton";
 
 const Dashboard = lazy(() => import("../components/DashboardPlaceholder"));
 
