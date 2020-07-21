@@ -143,19 +143,25 @@ export const ProjectFormModal = ({ defaultValue = {}, children, title }) => {
               </div>
             </div>
             <div className="buttons">
-              {defaultValue.id && (
-                <div onClick={handleDelete} className="button is-danger">
-                  Delete
-                </div>
-              )}
-              <div onClick={handleToggle} className="button">
-                Cancel
+              <div className="delete-button">
+                {defaultValue.id && (
+                  <div onClick={handleDelete} className="button is-danger">
+                    Delete
+                  </div>
+                )}
               </div>
-              <div
-                onClick={handleSubmit}
-                className={`button is-primary ${isLoading ? "is-loading" : ""}`}
-              >
-                Add Project
+              <div className="action-button">
+                <div onClick={handleToggle} className="button">
+                  Cancel
+                </div>
+                <div
+                  onClick={handleSubmit}
+                  className={`button is-primary ${
+                    isLoading ? "is-loading" : ""
+                  }`}
+                >
+                  Add Project
+                </div>
               </div>
             </div>
           </div>
