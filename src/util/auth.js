@@ -39,7 +39,7 @@ function useProvideAuth() {
     // Handle response from authentication functions
     const handleAuth = async (response) => {
         const { user, additionalUserInfo } = response;
-
+        const { username } = additionalUserInfo;
         // Ensure Firebase is actually ready before we continue
         await waitForFirebase();
 
@@ -48,6 +48,7 @@ function useProvideAuth() {
             email: user.email,
             photoURL: user.photoURL,
             displayName: user.displayName,
+            githubUsername: username
         });
 
         // Update user in state
