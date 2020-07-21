@@ -1,13 +1,26 @@
 # Makerdock
 A platform for developer so share and discuss their projects
 
+## Setting up the Project
+
+- Fork the repo and clone it to your local machine.
+- For the project to work you have to setup a firebase project.
+  Create a Project from the [firebase console](https://console.firebase.google.com/).
+
+- Enable firestore in your project and firebase auth (google and sign-in password) in your firebase console.
+- Once that is done, duplicate the .env.example file and rename it to just .env. Grab the keys from firebase console and paste it in the .env file.
+- Run `npm install` to install the dependencies and `npm run dev` to start the project. More details are available in the guide section.
+- To check your local deployment, login to [vercel](https://vercel.app) and link your github repo that you forked to it.
+- Whitelist vercel domains on your firebase auth Authorized Domains as well.
+
+
 ## How to start contributing?
-Comment on any issue that you want to pick up
+Help is welcome! We are communicating on [Discord](https://discord.gg/6C6Hv6s)
 
 ## 👉 Get Started
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Install dependencies
@@ -42,18 +55,6 @@ This project uses the following libraries and services:
 - Newsletter - [Mailchimp](https://mailchimp.com)
 - Analytics - [Google Analytics](https://googleanalytics.com)
 - Hosting - [Vercel](https://vercel.com)
-
-## Setting up the Project
-
-- Fork the repo and clone it to your local machine.
-- For the project to work you have to setup a firebase project.
-  Create a Project from the [firebase console](https://console.firebase.google.com/).
-
-- Enable firestore in your project and firebase auth (google and sign-in password) in your firebase console.
-- Once that is done, duplicate the .env.example file and rename it to just .env. Grab the keys from firebase console and paste it in the .env file.
-- Run `npm install` to install the dependencies and `npm run dev` to start the project. More details are available in the guide section.
-- To check your local deployment, login to [vercel](https://vercel.app) and link your github repo that you forked to it.
-- Whitelist vercel domains on your firebase auth Authorized Domains as well.
 
 ## 📚 Guide
 
@@ -233,6 +234,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/deepansh946"><img src="https://avatars3.githubusercontent.com/u/20930667?v=4" width="100px;" alt=""/><br /><sub><b>Deepansh Bhargava</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=deepansh946" title="Code">💻</a></td>
+    <td align="center"><a href="https://mritunjaysaha.netlify.app"><img src="https://avatars2.githubusercontent.com/u/59063979?v=4" width="100px;" alt=""/><br /><sub><b>Mritunjay Saha</b></sub></a><br /><a href="https://github.com/Utkarshbhimte/devcom/commits?author=mritunjaysaha" title="Code">💻</a></td>
   </tr>
 </table>
 
