@@ -19,16 +19,8 @@ function Navbar(props) {
           <div className="grid gap-4 align-middle items-center grid-flow-col">
             {auth.user && (
               <>
-                <Link href="/">
-                  <a className="navbar-link">Account</a>
-                </Link>
-
                 <Link href="/dashboard">
                   <a className="navbar-item">Dashboard</a>
-                </Link>
-
-                <Link href="/settings">
-                  <a className="navbar-item">Settings</a>
                 </Link>
 
                 <Link href="/logout">

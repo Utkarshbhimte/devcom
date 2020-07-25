@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
-import "./CommentSection.scss";
+// import "./CommentSection.scss";
 import {
   useComments,
   useUser,
   firestore,
   updateComment,
   deleteComment,
-} from "util/db";
-import { formatDate } from "util/date";
-import { useAuth } from "util/auth";
+} from "../../util/db";
+import { formatDate } from "../../util/date";
+import { useAuth } from "../../util/auth";
 
 const loadingState = {
   delete: "Delete",
@@ -39,7 +39,7 @@ const CommentCell = ({ comment }) => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event && event.preventDefault();
     const text = inputRef.current && inputRef.current.value;
 
@@ -97,9 +97,8 @@ const CommentCell = ({ comment }) => {
               placeholder="Share your thoughts on this project"
             ></textarea>
             <button
-              className="primary-action"
               type="submit"
-              className={`button is-primary ${
+              className={`button primary-action ${
                 loading === loadingState.edit ? "is-loading" : ""
               }`}
             >

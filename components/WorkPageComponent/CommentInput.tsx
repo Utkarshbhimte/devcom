@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { useAuth } from "util/auth";
-import { createComment } from "util/db";
+import { useAuth } from "../../util/auth";
+import { createComment } from "../../util/db";
 
 export const CommentInput = ({ workId }) => {
   const { user } = useAuth();
@@ -9,7 +9,7 @@ export const CommentInput = ({ workId }) => {
 
   const handleSubmit = async (event) => {
     event && event.preventDefault();
-    const text = inputRef.current && inputRef.current.value;
+    const text = inputRef.current?.value;
 
     if (!(text && !!text.length)) {
       return;
@@ -35,20 +35,27 @@ export const CommentInput = ({ workId }) => {
   };
 
   return user ? (
-    <form className="input-wrapper" onSubmit={handleSubmit}>
+    <form className="flex" onSubmit={handleSubmit}>
       {user && (
-        <img className="avatar" src={user.photoURL} alt="Placeholder image" />
+        <figure className="h-12 w-12 mr-4">
+          <img
+            className="rounded-full"
+            src={user?.photoURL}
+            alt={user?.displayName}
+          />
+        </figure>
       )}
       <textarea
         ref={inputRef}
         onKeyDown={handleEnterPressOnInput}
-        className={`textarea comment-input`}
+        className={`textarea comment-input mr-4`}
         placeholder="Share your thoughts on this project"
       ></textarea>
       <button
-        className="primary-action"
         type="submit"
-        className={`button is-primary ${loading ? "is-loading" : ""}`}
+        className={`button primary-action is-primary ${
+          loading ? "is-loading" : ""
+        }`}
       >
         Send
       </button>
