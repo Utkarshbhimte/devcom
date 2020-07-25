@@ -5,6 +5,8 @@ import DeveloperProjectCardComponent from 'components/DeveloperProjectCard/Devel
 import DeveloperBlogCardComponent from 'components/DeveloperBlogCard/DeveloperBlogCardComponent';
 
 const DeveloperPageComponent = ({ data }) => {
+  let projects = data.works.filter((work) => work.type === 'project');
+  let blogs = data.works.filter((work) => work.type === 'blog');
   return (
     <div className='dev-page-container'>
       <section className='section page-header'>
@@ -22,13 +24,14 @@ const DeveloperPageComponent = ({ data }) => {
           </div>
 
           <div className='work-card-grid'>
-            {data.works
-              .filter((work) => work.type === 'project')
-              .map((work, index) => {
-                return (
-                  <DeveloperProjectCardComponent key={index} project={work} />
-                );
-              })}
+            {projects.length === 0 ? (
+              <p>The user hasn not added any projects yet.</p>
+            ) : null}
+            {projects.map((work, index) => {
+              return (
+                <DeveloperProjectCardComponent key={index} project={work} />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -42,11 +45,12 @@ const DeveloperPageComponent = ({ data }) => {
           </div>
 
           <div className='work-card-grid'>
-            {data.works
-              .filter((work) => work.type === 'blog')
-              .map((work, index) => {
-                return <DeveloperBlogCardComponent key={index} blog={work} />;
-              })}
+            {blogs.length === 0 ? (
+              <p>The user hasn not added any blogs yet.</p>
+            ) : null}
+            {blogs.map((work, index) => {
+              return <DeveloperBlogCardComponent key={index} blog={work} />;
+            })}
           </div>
         </div>
       </section>

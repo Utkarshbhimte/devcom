@@ -19,7 +19,10 @@ const UserDetailChip = ({ userId, createdTime }) => {
         </figure>
       </div>
       <div className="media-content">
-        <p>{query.data && query.data.displayName}</p>
+        {query.data && (
+          <Link href={`/dev/${userId}`}>{query.data.displayName}</Link>
+        )}
+        <br />
         <span>{formatDate(createdTime)}</span>
       </div>
     </div>
