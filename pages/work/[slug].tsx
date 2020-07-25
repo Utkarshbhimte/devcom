@@ -1,6 +1,6 @@
 import React from "react";
-import WorkPageComponent from "components/WorkPageComponent/WorkPageComponent";
-import { fetchRelative } from "util/fetchRelative";
+import WorkPageComponent from "../../components/WorkPageComponent/WorkPageComponent";
+import { fetchRelative } from "../../util/fetchRelative";
 import { NextSeo } from "next-seo";
 
 const WorkPage = ({ data }) => {

@@ -21,10 +21,10 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
   title,
 }) => {
   const { user } = useAuth();
-  const [showForm, setShowForm] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isFetchingData, setIsFetchingData] = useState(true);
-  const [tags, setTags] = useState(defaultValue?.tags || []);
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isFetchingData, setIsFetchingData] = useState<boolean>(true);
+  const [tags, setTags] = useState<string[]>(defaultValue?.tags || []);
 
   // inputRef
   const titleRef = useRef(null);
@@ -57,8 +57,8 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
       const blogLink = blogLinkRef.current && blogLinkRef.current.value;
 
       setIsLoading(true);
-      if (defaultValue.id) {
-        await updateWork(defaultValue.id, {
+      if (defaultValue?.id) {
+        await updateWork(defaultValue?.id, {
           title,
           desc,
           blogLink,
