@@ -1,18 +1,18 @@
 import React from "react";
 import Router from "next/router";
 import Head from "next/head";
+import { AppProps } from "next/app";
+import { DefaultSeo } from "next-seo";
 import NProgress from "nprogress"; //nprogress module
 import * as Sentry from "@sentry/browser";
 
 // import "styles/global.scss";
-import "styles/PageLoader.css";
-import "styles/index.css";
+import "../styles/PageLoader.css";
+import "../styles/index.css";
 
-import Navbar from "components/Navbar";
-import Footer from "components/Footer";
-import "util/analytics.js";
-import { ProvideAuth } from "util/auth.js";
-import { DefaultSeo } from "next-seo";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer";
+import { ProvideAuth } from "../util/auth";
 import logo from "../assets/logo-with-text.svg";
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
@@ -26,7 +26,7 @@ Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-class MyApp extends React.Component {
+class MyApp extends React.Component<AppProps> {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
@@ -72,9 +72,10 @@ class MyApp extends React.Component {
           }}
         />
         <>
-          <Navbar color="white" spaced={true} logo={logo}></Navbar>
-
-          <Component {...pageProps} />
+          <div className="min-h-screen">
+            <Navbar color="white" spaced={true} logo={logo}></Navbar>
+            <Component {...pageProps} />
+          </div>
 
           <Footer
             color="light"

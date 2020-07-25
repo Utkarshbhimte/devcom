@@ -1,12 +1,20 @@
-const withSass = require("@zeit/next-sass");
-const withImages = require("next-images");
-const withSourceMaps = require("@zeit/next-source-maps")();
+// next.config.js
+const withSourceMaps = require("@zeit/next-source-maps");
 
 // Extend your Next config for advanced behavior
 // See https://nextjs.org/docs/api-reference/next.config.js/introduction
-let nextConfig = {};
+let nextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: {
+        test: /\.(js|ts)x?$/,
+      },
+      use: ["@svgr/webpack"],
+    });
 
-// Add the Next SASS plugin
-nextConfig = withSourceMaps(withSass(withImages(nextConfig)));
+    return config;
+  },
+};
 
 module.exports = nextConfig;

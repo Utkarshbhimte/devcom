@@ -1,0 +1,45 @@
+.work-page-container {
+  .page-header {
+    padding: 2rem 0;
+  }
+
+  .title {
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    margin-bottom: 2rem;
+  }
+
+  .owner-details {
+    margin-bottom: 2rem;
+  }
+
+  .discussion-wrapper {
+    margin: 2rem 0;
+    max-width: 700px;
+
+    .input-wrapper {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: 2.4rem 1fr min-content;
+      grid-template-areas: "avatar input button";
+      margin-top: 1rem;
+
+      .avatar {
+        height: 2.4rem;
+        width: 2.4rem;
+        border-radius: 50%;
+        grid-area: avatar;
+      }
+
+      .comment-input {
+        grid-area: input;
+      }
+
+      .primary-action {
+        grid-area: button;
+      }
+    }
+  }
+}

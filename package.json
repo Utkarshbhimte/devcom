@@ -3,27 +3,28 @@
   "version": "0.1.0",
   "private": false,
   "keywords": [
-    "developers","platform"
+    "developers",
+    "platform"
   ],
   "dependencies": {
     "@analytics/google-analytics": "0.2.2",
     "@sentry/browser": "^5.1.0",
-    "@zeit/next-sass": "0.2.1-canary.4",
-    "@zeit/next-source-maps": "0.0.4-canary.1",
+    "@svgr/webpack": "^5.4.0",
+    "@zeit/next-source-maps": "^0.0.3",
     "analytics": "0.3.1",
-    "bulma": "0.7.5",
+    "date-fns": "^2.11.1",
     "firebase": "7.15.1",
     "firebase-admin": "^8.13.0",
-    "mailchimp-api-v3": "1.13.1",
-    "next": "9.4",
-    "next-absolute-url": "^1.2.2",
-    "next-seo": "^4.7.1",
-    "node-sass": "4.13.0",
+    "gray-matter": "^4.0.2",
+    "next": "^9.4.4",
+    "next-seo": "^4.7.3",
     "nprogress": "^0.2.0",
-    "query-string": "6.9.0",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-hook-form": "4.10.1"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "remark": "^12.0.0",
+    "remark-html": "^11.0.1",
+    "swr": "^0.2.3",
+    "tailwindcss": "^1.5.2"
   },
   "scripts": {
     "dev": "next dev",
@@ -46,6 +47,9 @@
     ]
   },
   "devDependencies": {
-    "next-images": "^1.4.0"
+    "@types/node": "^14.0.24",
+    "@types/react": "^16.9.43",
+    "postcss-preset-env": "^6.7.0",
+    "typescript": "^3.9.7"
   }
 }

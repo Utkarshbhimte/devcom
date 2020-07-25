@@ -10,11 +10,19 @@ import firebase from "./firebase";
 import { useUser, createUser, updateUser } from "./db";
 import router from "next/router";
 import PageLoader from "../components/PageLoader/PageLoader";
+import { UserData } from "./contracts";
 
 // Whether to merge user data from database into auth.user
 const MERGE_DB_USER = true;
 
-const authContext = createContext();
+interface UserAuthState {
+  user: UserData;
+  loading: boolean;
+  signIn: () => Promise<void>;
+  signout: () => Promise<void>;
+  updateProfile: (data: UserData) => Promise<void>;
+}
+const authContext = createContext<UserAuthState | null>(null);
 
 // Context Provider component that wraps your app and makes auth object
 // available to any child component that calls the useAuth() hook.
@@ -31,10 +39,11 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   // Store auth user object
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Format final user object and merge extra data from database
-  const finalUser = usePrepareUser(user);
+  const finalUser: UserData = usePrepareUser(user);
 
   // Handle response from authentication functions
   const handleAuth = async (response) => {
@@ -55,21 +64,11 @@ function useProvideAuth() {
     return user;
   };
 
-  const signup = (email, password) => {
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(handleAuth);
+  const signIn = () => {
+    return signinWithProvider(AuthProvider.github);
   };
 
-  const signin = (email, password) => {
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(handleAuth);
-  };
-
-  const signinWithProvider = (name) => {
+  const signinWithProvider = (name: AuthProvider) => {
     // Get provider data by name ("password", "google", etc)
     const providerData = allProviders.find((p) => p.name === name);
 
@@ -86,17 +85,6 @@ function useProvideAuth() {
     return firebase.auth().signOut();
   };
 
-  const sendPasswordResetEmail = (email) => {
-    return firebase.auth().sendPasswordResetEmail(email);
-  };
-
-  const confirmPasswordReset = (password, code) => {
-    // Get code from query string object
-    const resetCode = code || getFromQueryString("oobCode");
-
-    return firebase.auth().confirmPasswordReset(resetCode, password);
-  };
-
   const updateEmail = (email) => {
     return firebase
       .auth()
@@ -107,14 +95,10 @@ function useProvideAuth() {
       });
   };
 
-  const updatePassword = (password) => {
-    return firebase.auth().currentUser.updatePassword(password);
-  };
-
   // Update auth user and persist to database (including any custom values in data)
   // Forms can call this function instead of multiple auth/db update functions
-  const updateProfile = async (data) => {
-    const { email, name, picture } = data;
+  const updateProfile = async (data: UserData) => {
+    const { email, displayName, photoURL } = data;
 
     // Update auth email
     if (email) {
@@ -122,10 +106,10 @@ function useProvideAuth() {
     }
 
     // Update auth profile fields
-    if (name || picture) {
-      let fields = {};
-      if (name) fields.displayName = name;
-      if (picture) fields.photoURL = picture;
+    if (name || photoURL) {
+      let fields: Partial<UserData> = {};
+      if (name) fields.displayName = displayName;
+      if (photoURL) fields.photoURL = photoURL;
       await firebase.auth().currentUser.updateProfile(fields);
     }
 
@@ -138,12 +122,13 @@ function useProvideAuth() {
 
   useEffect(() => {
     // Subscribe to user on mount
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
-        setUser(user);
+        await setUser(user);
       } else {
-        setUser(false);
+        await setUser(null);
       }
+      setLoading(false);
     });
 
     // Unsubscribe on cleanup
@@ -151,15 +136,16 @@ function useProvideAuth() {
   }, []);
 
   return {
-    user: finalUser,
-    signup,
-    signin,
-    signinWithProvider,
+    user: user && {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      ...finalUser,
+    },
+    signIn,
+    loading,
     signout,
-    sendPasswordResetEmail,
-    confirmPasswordReset,
-    updateEmail,
-    updatePassword,
     updateProfile,
   };
 }
@@ -172,14 +158,16 @@ export const requireAuth = (Component) => {
 
     useEffect(() => {
       // Redirect if not signed in
-      if (auth.user === false) {
-        router.replace("/auth/signin");
+
+      if (!auth.user && !auth.loading) {
+        console.log("redirecting...");
+        router.replace("/login");
       }
     }, [auth]);
 
     // Show loading indicator
     // We're either loading (user is null) or we're about to redirect (user is false)
-    if (!auth.user) {
+    if (!!auth.loading) {
       return <PageLoader />;
     }
 
@@ -189,7 +177,7 @@ export const requireAuth = (Component) => {
 };
 
 // Format final user object and merge extra data from database
-function usePrepareUser(user) {
+function usePrepareUser(user): UserData {
   // Fetch extra data from database (if enabled and auth user has been fetched)
   const userDbQuery = useUser(MERGE_DB_USER && user && user.uid);
 
@@ -199,18 +187,18 @@ function usePrepareUser(user) {
     if (!user) return user;
 
     // Data we want to include from auth user object
-    let finalUser = {
+    let finalUser: UserData = {
       uid: user.uid,
       email: user.email,
-      name: user.displayName,
-      picture: user.photoURL,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
     };
 
     // Include an array of user's auth providers, such as ["password", "google", etc]
     // Components can read this to prompt user to re-auth with the correct provider
-    finalUser.providers = user.providerData.map(({ providerId }) => {
-      return allProviders.find((p) => p.id === providerId).name;
-    });
+    // finalUser.providers = user.providerData.map(({ providerId }) => {
+    //   return allProviders.find((p) => p.id === providerId).name;
+    // });
 
     // If merging user data from database is enabled ...
     if (MERGE_DB_USER) {
@@ -224,10 +212,10 @@ function usePrepareUser(user) {
         case "success":
           // If user data doesn't exist we assume this means user just signed up and the createUser
           // function just hasn't completed. We return null to indicate a loading state.
-          if (userDbQuery.data === null) return null;
+          // if (userDbQuery.data === null) return null;
 
           // Merge user data from database into finalUser object
-          Object.assign(finalUser, userDbQuery.data);
+          finalUser = { ...finalUser, ...(userDbQuery?.data || {}) };
 
         // no default
       }
@@ -237,11 +225,15 @@ function usePrepareUser(user) {
   }, [user, userDbQuery]);
 }
 
+export enum AuthProvider {
+  password = "password",
+  google = "google",
+  facebook = "facebook",
+  twitter = "twitter",
+  github = "github",
+}
+
 const allProviders = [
-  {
-    id: "password",
-    name: "password",
-  },
   {
     id: "google.com",
     name: "google",

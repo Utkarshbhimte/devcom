@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;500;600&display=swap");
+
+html,
+body,
+#__next {
+  @apply h-screen p-0 m-0 text-textPrimary;
+}
+
+nav {
+  backdrop-filter: blur(4px);
+}
+
+.h-page {
+  height: calc(100vh - 5rem);
+}
+.min-h-page {
+  height: calc(100vh - 5rem);
+}
+
+.work-card-grid {
+  @apply grid grid-cols-4 gap-4;
+}
+.work-card {
+  @apply shadow-lg p-4 bg-white rounded border;
+}
+
+.input,
+.textarea {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.input:focus,
+.textarea:focus {
+  @apply outline-none shadow-outline;
+}

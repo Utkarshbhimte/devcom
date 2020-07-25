@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;500;600&display=swap");
+
+html,
+body,
+#__next {
+  @apply h-screen p-0 m-0 text-textPrimary-400 bg-background;
+}
+
+nav {
+  backdrop-filter: blur(4px);
+}
