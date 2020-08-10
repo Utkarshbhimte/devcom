@@ -1,5 +1,8 @@
+import { UserData } from "./contracts";
 import { useState, useEffect, useRef } from "react";
 import firebase from "./firebase";
+
+import { Comment } from "./contracts";
 
 export const firestore = firebase.firestore();
 
@@ -8,7 +11,7 @@ export const firestore = firebase.firestore();
 // Fetch user data (hook)
 // This is called automatically by auth.js and merged into auth.user
 export function useUser(uid) {
-  return useQuery(uid && firestore.collection("users").doc(uid));
+  return useQuery<UserData>(uid && firestore.collection("users").doc(uid));
 }
 
 // Update an existing user
@@ -128,14 +131,19 @@ export function useFeedData() {
 }
 
 export const useComments = (workId) => {
-  return useQuery(firestore.collection(`works/${workId}/comments`));
+  return useQuery<Comment[]>(firestore.collection(`works/${workId}/comments`));
 };
 
 /**** HELPERS ****/
 
 // Custom React hook that subscribes to a Firestore query
-function useQuery(query) {
-  const [queryState, setQueryState] = useState({
+interface QueryState<T> {
+  status: "loading" | "success" | "error";
+  data?: T;
+  error?: string | null;
+}
+function useQuery<T>(query) {
+  const [queryState, setQueryState] = useState<QueryState<T>>({
     status: "loading",
     data: undefined,
     error: null,
@@ -143,35 +151,35 @@ function useQuery(query) {
 
   // Gives us previous query object if query is the same
   // ensuring we don't unsubscribe and resubscribe below.
-  // const queryCached = useQueryCache(query);
+  const queryCached = useQueryCache(query);
 
-  // useEffect(() => {
-  //   // Skip if falsy value, as that allows us to wait on needed
-  //   // needed data before constructing query and passing it into useQuery.
-  //   if (queryCached) {
-  //     return queryCached.onSnapshot(
-  //       (response) => {
-  //         // Get data for collection or doc
-  //         const data = response.docs
-  //           ? getCollectionData(response)
-  //           : getDocData(response);
+  useEffect(() => {
+    // Skip if falsy value, as that allows us to wait on needed
+    // needed data before constructing query and passing it into useQuery.
+    if (queryCached) {
+      return queryCached.onSnapshot(
+        (response) => {
+          // Get data for collection or doc
+          const data = response.docs
+            ? getCollectionData(response)
+            : getDocData(response);
 
-  //         setQueryState({
-  //           status: "success",
-  //           data: data,
-  //           error: null,
-  //         });
-  //       },
-  //       (error) => {
-  //         setQueryState((state) => ({
-  //           status: "error",
-  //           data: state.data,
-  //           error: error,
-  //         }));
-  //       }
-  //     );
-  //   }
-  // }, [queryCached]);
+          setQueryState({
+            status: "success",
+            data: data,
+            error: null,
+          });
+        },
+        (error) => {
+          setQueryState((state) => ({
+            status: "error",
+            data: state.data,
+            error: error,
+          }));
+        }
+      );
+    }
+  }, [queryCached]);
 
   return queryState;
 }
@@ -188,22 +196,22 @@ function getCollectionData(collection) {
   });
 }
 
-// function useQueryCache<T>(query) {
-//   // Ref for storing previous query object
-//   const previousRef = useRef<T>();
-//   const previous = previousRef.current;
+function useQueryCache<T extends Object>(query) {
+  // Ref for storing previous query object
+  const previousRef = useRef<T>();
+  const previous = previousRef.current;
 
-//   // Determine if query object is equal to previous
-//   const isEqual =
-//     (!previous && !query) || (previous && query && previous.isEqual(query));
+  // Determine if query object is equal to previous
+  const isEqual =
+    (!previous && !query) || (previous && query && previous === query);
 
-//   // If not equal update previous to query (for next render)
-//   // and then return new query below.
-//   useEffect(() => {
-//     if (!isEqual) {
-//       previousRef.current = query;
-//     }
-//   });
+  // If not equal update previous to query (for next render)
+  // and then return new query below.
+  useEffect(() => {
+    if (!isEqual) {
+      previousRef.current = query;
+    }
+  });
 
-//   return isEqual ? previous : query;
-// }
+  return isEqual ? previous : query;
+}

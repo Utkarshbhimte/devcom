@@ -10,8 +10,8 @@ const WorkPageComponent = ({ data }) => {
     <div>
       <div className="container mx-auto">
         <div className="my-8 max-w-3xl">
-          <h3 className="text-xl">{data.title}</h3>
-          <p className="text-sm text-grey-600">{data.desc}</p>
+          <h3 className="text-3xl">{data.title}</h3>
+          <p className="text-sm mb-4 text-gray-600">{data.desc}</p>
 
           <Link href={`/dev/${data.owner}`}>
             <div className="flex my-4 cursor-pointer">

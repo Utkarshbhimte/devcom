@@ -73,16 +73,16 @@ const CommentCell = ({ comment }) => {
     }
   };
 
-  console.log(
-    "CommentCell -> user.uid === authorData.uid",
-    user.uid === authorData.uid
-  );
   return (
-    <div className="comment-row">
+    <div className="comment-row flex">
       {authorData ? (
-        <img src={authorData.photoURL} alt={authorData.displayName} />
+        <img
+          className="w-12 h-12 mr-4 rounded-full"
+          src={authorData.photoURL}
+          alt={authorData.displayName}
+        />
       ) : (
-        <div />
+        <div className="w-12 h-12 mr-4" />
       )}
       <div>
         {authorData && (
@@ -110,18 +110,17 @@ const CommentCell = ({ comment }) => {
             </button>
           </form>
         )}
-        <div className="comment-footer">
-          {!!user && user.uid === authorData.uid && (
-            <span className="comment-actions">
-              <a
-                className=" comment-action-btn button is-white"
-                role="button"
-                onClick={editComment}
-              >
+        <div className="grid gap-2 grid-flow-col text-xs mt-2">
+          {comment.created && (
+            <span>{formatDate(comment.created.seconds * 1000)}</span>
+          )}
+          {!!user && user.uid === authorData?.uid && (
+            <>
+              <a role="button" onClick={editComment}>
                 Edit
               </a>
               <a
-                className={`delete-btn comment-action-btn button is-white ${
+                className={`delete-btn ${
                   loading === loadingState.delete ? "is-loading" : ""
                 }`}
                 role="button"
@@ -129,12 +128,7 @@ const CommentCell = ({ comment }) => {
               >
                 Delete
               </a>
-            </span>
-          )}
-          {comment.created && (
-            <small className="timestamp">
-              {formatDate(comment.created.seconds * 1000)}
-            </small>
+            </>
           )}
         </div>
       </div>
@@ -143,14 +137,14 @@ const CommentCell = ({ comment }) => {
 };
 
 const CommentSection = ({ workId }) => {
+  console.log("CommentSection -> workId", workId);
   const { data } = useComments(workId);
   console.log("CommentSection -> data", data);
   return (
-    <div className="comment-section">
-      {data &&
-        data.map((comment) => (
-          <CommentCell key={comment.id} comment={comment} />
-        ))}
+    <div className="grid gap-4 my-8">
+      {data?.map((comment) => (
+        <CommentCell key={comment.id} comment={comment} />
+      ))}
     </div>
   );
 };

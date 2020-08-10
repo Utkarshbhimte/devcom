@@ -35,9 +35,9 @@ const UserDetailChip: React.FC<UserDetailChipProps> = ({
 const HomePageFeedCard = ({ data }) => {
   return (
     <Link href={`/work/${data.id}`}>
-      <div className="my-8">
+      <div className="cursor-pointer">
         <div>
-          <div className="text-sm tracking-wide uppercase text-gray-600">
+          <div className="text-xs tracking-wide uppercase text-gray-600">
             {data.type}
           </div>
           <h4 className="text-xl">{data.title}</h4>

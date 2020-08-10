@@ -24,3 +24,11 @@ export interface Work extends FirebaseFirestore.DocumentData {
   owner: string;
   ownerData?: UserData;
 }
+export interface Comment extends FirebaseFirestore.DocumentData {
+  id: string;
+  created: string;
+  owner: string;
+  updated: string;
+  text: string;
+  workId: string;
+}
