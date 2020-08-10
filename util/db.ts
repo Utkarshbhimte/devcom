@@ -1,6 +1,10 @@
-import { UserData } from "./contracts";
+import { UserData, Work } from "./contracts";
 import { useState, useEffect, useRef } from "react";
-import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
+import {
+  useCollection,
+  useCollectionData,
+  useDocumentData,
+} from "react-firebase-hooks/firestore";
 
 import firebase from "./firebase";
 
@@ -116,36 +120,51 @@ export function createComment(workId, text, owner) {
   });
 }
 
-export function useProjectsByOwner(owner) {
-  return useQuery(
+export function useProjectsByOwner(
+  owner
+): [Work[], boolean, Error | undefined] {
+  const [data, loading, error] = useCollection(
     owner &&
       firestore
         .collection("works")
         .where("owner", "==", owner)
         .where("type", "==", "project")
   );
-}
 
-export function useBlogsByOwner(owner) {
-  return useQuery(
+  const dataWithId = data?.docs
+    .filter((d) => !!d.exists)
+    .map((d) => ({ ...d.data(), id: d.id })) as Work[];
+  return [dataWithId, loading, error];
+}
+export function useBlogsByOwner(owner): [Work[], boolean, Error | undefined] {
+  const [data, loading, error] = useCollection(
     owner &&
       firestore
         .collection("works")
         .where("owner", "==", owner)
         .where("type", "==", "blog")
   );
+
+  const dataWithId = data?.docs
+    .filter((d) => !!d.exists)
+    .map((d) => ({ ...d.data(), id: d.id })) as Work[];
+  return [dataWithId, loading, error];
 }
 
 export function useFeedData() {
   return useQuery(firestore.collection("works"));
 }
 
-export const useComments = (workId) => {
+export const useComments = (
+  workId
+): [Comment[], boolean, Error | undefined] => {
   const [data, loading, error] = useCollection(
     firestore.collection(`works/${workId}/comments`)
   );
 
-  const dataWithId = data?.docs.map((d) => ({ ...d.data(), id: d.id }));
+  const dataWithId = data?.docs
+    .filter((d) => !!d.exists)
+    .map((d) => ({ ...d.data(), id: d.id })) as Comment[];
   return [dataWithId, loading, error];
 };
 

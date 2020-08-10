@@ -2,17 +2,10 @@ import React, { useState, useRef } from "react";
 // import "./AddBlogCard.scss";
 import { useAuth } from "../../util/auth";
 import { createWork, updateWork, deleteWork } from "../../util/db";
-
-interface BlogPost {
-  id: string;
-  tags: string[];
-  title: string;
-  description: string;
-  link: string;
-}
+import { Work } from "../../util/contracts";
 
 interface BlogFormModalProps {
-  defaultValue?: BlogPost;
+  defaultValue?: Work;
   title: string;
 }
 export const BlogFormModal: React.FC<BlogFormModalProps> = ({

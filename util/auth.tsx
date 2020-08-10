@@ -179,7 +179,9 @@ export const requireAuth = (Component) => {
 // Format final user object and merge extra data from database
 function usePrepareUser(user): UserData {
   // Fetch extra data from database (if enabled and auth user has been fetched)
-  const userDbQuery = useUser(MERGE_DB_USER && user && user.uid);
+  const [userDbQuery, userLoading, userError] = useUser(
+    MERGE_DB_USER && user && user.uid
+  );
 
   // Memoize so we only create a new object if user or userDbQuery changes
   return useMemo(() => {
@@ -200,26 +202,26 @@ function usePrepareUser(user): UserData {
     //   return allProviders.find((p) => p.id === providerId).name;
     // });
 
-    // If merging user data from database is enabled ...
-    if (MERGE_DB_USER) {
-      switch (userDbQuery.status) {
-        case "loading":
-          // Return null user so auth is considered loading until we have db data to merge
-          return null;
-        case "error":
-          // Log query error to console
-          console.error(userDbQuery.error);
-        case "success":
-          // If user data doesn't exist we assume this means user just signed up and the createUser
-          // function just hasn't completed. We return null to indicate a loading state.
-          // if (userDbQuery.data === null) return null;
+    // // If merging user data from database is enabled ...
+    // if (MERGE_DB_USER) {
+    //   switch (userLoading) {
+    //     case "loading":
+    //       // Return null user so auth is considered loading until we have db data to merge
+    //       return null;
+    //     case "error":
+    //       // Log query error to console
+    //       console.error(userDbQuery.error);
+    //     case "success":
+    //       // If user data doesn't exist we assume this means user just signed up and the createUser
+    //       // function just hasn't completed. We return null to indicate a loading state.
+    //       // if (userDbQuery.data === null) return null;
 
-          // Merge user data from database into finalUser object
-          finalUser = { ...finalUser, ...(userDbQuery?.data || {}) };
+    //       // Merge user data from database into finalUser object
+    //       finalUser = { ...finalUser, ...(userDbQuery?.data || {}) };
 
-        // no default
-      }
-    }
+    //     // no default
+    //   }
+    // }
 
     return finalUser;
   }, [user, userDbQuery]);
