@@ -2,11 +2,10 @@ import React, { useState, useRef } from "react";
 // import "./AddProjectCard.scss";
 import { createWork, updateWork, deleteWork } from "../../util/db";
 import { useAuth } from "../../util/auth";
+import { Work } from "../../util/contracts";
 
-interface ProjectFormModalProps {
-  defaultValue: {
-    tags?: string[];
-  };
+interface 'ProjectFormModalProps' {
+  defaultValue?: Partial<Work>;
   title: string;
 }
 export const ProjectFormModal: React.FC<ProjectFormModalProps> = ({
@@ -39,7 +38,7 @@ export const ProjectFormModal: React.FC<ProjectFormModalProps> = ({
 
   const handleDelete = () => {
     setShowForm(false);
-    deleteWork({ workId: defaultValue.id });
+    deleteWork({ workId: defaultValue });
   };
 
   const handleSubmit = async (event) => {
@@ -81,7 +80,9 @@ export const ProjectFormModal: React.FC<ProjectFormModalProps> = ({
   };
   return (
     <>
-      {!showForm && React.cloneElement(children, { onClick: handleToggle })}
+      {!showForm &&
+        React.isValidElement(children) &&
+        React.cloneElement(children, { onClick: handleToggle })}
       {/*
       {!!showForm && (
         <>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "../../util/auth";
-import Logo from "../../assets/logo-with-text.svg";
+import logo from "../../assets/logo-with-text.svg";
 
 function Navbar(props) {
   const auth = useAuth();
@@ -12,7 +12,7 @@ function Navbar(props) {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
           <a>
-            <Logo className="h-12" />
+            <img src={logo} className="h-12" />
           </a>
         </Link>
         {!auth.loading && (

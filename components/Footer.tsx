@@ -1,13 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import Logo from "../assets/logo-with-text.svg";
+import logo from "../assets/logo-with-text.svg";
+
 function Footer(props) {
   return (
     <div className="bg-background py-12">
       <div className="mx-auto container flex justify-between items-middle">
         <Link href="/">
           <a>
-            <Logo className="h-12 m min-w-12" />
+            <img src={logo} className="h-12 m min-w-12" />
           </a>
         </Link>
         <div className="grid gap-2 grid-flow-col items-center">

@@ -1,10 +1,5 @@
 module.exports = {
   theme: {
-    // fontFamily: {
-    //   sans: ["Poppins"],
-    //   serif: ["Poppins"],
-    //   body: ["Poppins"],
-    // },
     extend: {
       colors: {
         textPrimary: "#000",

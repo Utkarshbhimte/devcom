@@ -14,7 +14,7 @@ const WorkPageComponent = ({ data }) => {
           <p className="text-sm text-grey-600">{data.desc}</p>
 
           <Link href={`/dev/${data.owner}`}>
-            <div className="flex my-4">
+            <div className="flex my-4 cursor-pointer">
               <figure className="h-12 w-12 mr-2">
                 <img
                   className="rounded-full"

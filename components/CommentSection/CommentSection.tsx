@@ -39,7 +39,7 @@ const CommentCell = ({ comment }) => {
     }
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event?: any) => {
     event && event.preventDefault();
     const text = inputRef.current && inputRef.current.value;
 
@@ -73,6 +73,10 @@ const CommentCell = ({ comment }) => {
     }
   };
 
+  console.log(
+    "CommentCell -> user.uid === authorData.uid",
+    user.uid === authorData.uid
+  );
   return (
     <div className="comment-row">
       {authorData ? (
@@ -107,7 +111,7 @@ const CommentCell = ({ comment }) => {
           </form>
         )}
         <div className="comment-footer">
-          {!!user && (
+          {!!user && user.uid === authorData.uid && (
             <span className="comment-actions">
               <a
                 className=" comment-action-btn button is-white"
@@ -140,6 +144,7 @@ const CommentCell = ({ comment }) => {
 
 const CommentSection = ({ workId }) => {
   const { data } = useComments(workId);
+  console.log("CommentSection -> data", data);
   return (
     <div className="comment-section">
       {data &&

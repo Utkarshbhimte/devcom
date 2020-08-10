@@ -27,6 +27,10 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends React.Component<AppProps> {
+	public props: any;
+	public Component: any;
+	public pageProps: any;
+
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
