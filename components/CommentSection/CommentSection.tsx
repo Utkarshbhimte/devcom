@@ -17,7 +17,9 @@ const loadingState = {
 };
 const CommentCell = ({ comment }) => {
   const { user } = useAuth();
-  const { data: authorData } = useUser(comment.owner);
+  const [authorData, authorDataLoading, authorDataError] = useUser(
+    comment.owner
+  );
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -137,9 +139,7 @@ const CommentCell = ({ comment }) => {
 };
 
 const CommentSection = ({ workId }) => {
-  console.log("CommentSection -> workId", workId);
-  const { data } = useComments(workId);
-  console.log("CommentSection -> data", data);
+  const [data, loading, error] = useComments(workId);
   return (
     <div className="grid gap-4 my-8">
       {data?.map((comment) => (

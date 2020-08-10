@@ -1,5 +1,7 @@
 import { UserData } from "./contracts";
 import { useState, useEffect, useRef } from "react";
+import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
+
 import firebase from "./firebase";
 
 import { Comment } from "./contracts";
@@ -11,7 +13,9 @@ export const firestore = firebase.firestore();
 // Fetch user data (hook)
 // This is called automatically by auth.js and merged into auth.user
 export function useUser(uid) {
-  return useQuery<UserData>(uid && firestore.collection("users").doc(uid));
+  return useDocumentData<UserData>(
+    uid && firestore.collection("users").doc(uid)
+  );
 }
 
 // Update an existing user
@@ -83,7 +87,13 @@ export const deleteWork = ({ workId }) => {
   return firestore.doc(["works", workId].join("/")).delete();
 };
 
-export const deleteComment = ({ workId, commentId }) => {
+export const deleteComment = ({
+  workId,
+  commentId,
+}: {
+  workId: string;
+  commentId: string;
+}) => {
   return firestore
     .doc(["works", workId, "comments", commentId].join("/"))
     .delete();
@@ -131,7 +141,12 @@ export function useFeedData() {
 }
 
 export const useComments = (workId) => {
-  return useQuery<Comment[]>(firestore.collection(`works/${workId}/comments`));
+  const [data, loading, error] = useCollection(
+    firestore.collection(`works/${workId}/comments`)
+  );
+
+  const dataWithId = data?.docs.map((d) => ({ ...d.data(), id: d.id }));
+  return [dataWithId, loading, error];
 };
 
 /**** HELPERS ****/
