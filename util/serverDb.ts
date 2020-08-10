@@ -1,20 +1,25 @@
 import { Work, UserData } from "./contracts";
-import admin from "firebase-admin";
+import admin, { ServiceAccount } from "firebase-admin";
 
-if (!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
-  throw new Error("Firebase service account is not implemented properly");
-}
+const {
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  FIREBASE_PRIVATE_KEY,
+  FIREBASE_CLIENT_EMAIL,
+} = process.env;
 
 try {
-  if (!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
+  if (!NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
     throw new Error("Firebase service account is not implemented properly");
   }
+
+  const serviceAccountCredentials: ServiceAccount = {
+    projectId: NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    privateKey: FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    clientEmail: FIREBASE_CLIENT_EMAIL,
+  };
+
   admin.initializeApp({
-    credential: admin.credential.cert({
-      project_id: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-      private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-      client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    }),
+    credential: admin.credential.cert(serviceAccountCredentials),
     databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
   });
 } catch (error) {

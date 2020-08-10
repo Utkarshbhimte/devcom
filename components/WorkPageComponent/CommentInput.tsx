@@ -4,10 +4,10 @@ import { createComment } from "../../util/db";
 
 export const CommentInput = ({ workId }) => {
   const { user } = useAuth();
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLTextAreaElement>();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event?: any) => {
     event && event.preventDefault();
     const text = inputRef.current?.value;
 

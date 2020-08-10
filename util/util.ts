@@ -29,8 +29,10 @@ export async function apiRequest(path, method = "GET", data) {
 }
 
 // Create an Error with custom message and code
-export function CustomError(code, message?) {
-  const error = new Error(message);
-  error.code = code;
-  return error;
+export class CustomError {
+  constructor(code: number, message?: string) {
+    const error = new Error(message);
+    (error as any).code = code;
+    return error;
+  }
 }

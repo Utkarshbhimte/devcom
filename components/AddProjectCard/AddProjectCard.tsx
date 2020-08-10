@@ -4,7 +4,7 @@ import { createWork, updateWork, deleteWork } from "../../util/db";
 import { useAuth } from "../../util/auth";
 import { Work } from "../../util/contracts";
 
-interface 'ProjectFormModalProps' {
+interface ProjectFormModalProps {
   defaultValue?: Partial<Work>;
   title: string;
 }

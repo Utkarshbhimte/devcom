@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import AuthSection from "../../components/AuthSection";
 import { useRouter } from "next/router";
-import AuthSocial from "../../components/AuthSocial";
 import { useAuth } from "../../util/auth";
 
 function LoginPage(props) {

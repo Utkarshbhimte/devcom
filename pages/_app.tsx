@@ -4,7 +4,6 @@ import Head from "next/head";
 import { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
 import NProgress from "nprogress"; //nprogress module
-import * as Sentry from "@sentry/browser";
 
 // import "styles/global.scss";
 import "../styles/PageLoader.css";
@@ -15,44 +14,12 @@ import Footer from "../components/Footer";
 import { ProvideAuth } from "../util/auth";
 import logo from "../assets/logo-with-text.svg";
 
-if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-  Sentry.init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-  });
-}
-
 //Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends React.Component<AppProps> {
-	public props: any;
-	public Component: any;
-	public pageProps: any;
-
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    Sentry.withScope((scope) => {
-      Object.keys(errorInfo).forEach((key) => {
-        scope.setExtra(key, errorInfo[key]);
-      });
-
-      Sentry.captureException(error);
-    });
-
-    super.componentDidCatch(error, errorInfo);
-  }
-
   render() {
     const { Component, pageProps } = this.props;
     return (
