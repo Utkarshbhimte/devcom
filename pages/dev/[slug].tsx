@@ -2,11 +2,15 @@ import React from "react";
 import { fetchRelative } from "../../util/fetchRelative";
 import { NextSeo } from "next-seo";
 import DeveloperPageComponent from "../../components/DeveloperPageComponent/DeveloperPageComponent";
+import { UserData } from "../../util/contracts";
 
-const DevPage = ({ data }) => {
+interface DevPageProps {
+  data: UserData;
+}
+const DevPage: React.FC<DevPageProps> = ({ data }) => {
   return (
     <>
-      <NextSeo title={` | Devcom`} description={""} />
+      <NextSeo title={`${data.displayName} | Devcom`} description={""} />
       <DeveloperPageComponent data={data} />
     </>
   );

@@ -5,51 +5,41 @@ import DeveloperProjectCardComponent from "../../components/DeveloperProjectCard
 import DeveloperBlogCardComponent from "../../components/DeveloperBlogCard/DeveloperBlogCardComponent";
 
 const DeveloperPageComponent = ({ data }) => {
+  const devBlogs = data.works?.filter((work) => work.type === "blog");
+  const devProjects = data.works?.filter((work) => work.type === "project");
   return (
-    <div className="dev-page-container">
-      <section className="section page-header">
-        <div className="container">
+    <div>
+      <section className="py-8">
+        <div className="container mx-auto">
           <DeveloperBannerComponent data={data} />
         </div>
       </section>
 
-      <section className="section page-projects">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-full">
-              <h1 className="title">Projects</h1>
-            </div>
-          </div>
+      {!!devProjects?.length && (
+        <section className="container mx-auto my-8">
+          <h3 className="section-heading">Projects</h3>
 
           <div className="work-card-grid">
-            {data.works
-              ?.filter((work) => work.type === "project")
-              .map((work, index) => {
-                return (
-                  <DeveloperProjectCardComponent key={index} project={work} />
-                );
-              })}
+            {devProjects.map((work, index) => {
+              return (
+                <DeveloperProjectCardComponent key={index} project={work} />
+              );
+            })}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <section className="section page-projects">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-full">
-              <h1 className="title">Blogs</h1>
-            </div>
-          </div>
+      {!!devBlogs?.length && (
+        <section className="container mx-auto my-8">
+          <h3 className="section-heading">Blogs</h3>
 
           <div className="work-card-grid">
-            {data.works
-              ?.filter((work) => work.type === "blog")
-              .map((work, index) => {
-                return <DeveloperBlogCardComponent key={index} blog={work} />;
-              })}
+            {devBlogs.map((work, index) => {
+              return <DeveloperBlogCardComponent key={index} blog={work} />;
+            })}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 };

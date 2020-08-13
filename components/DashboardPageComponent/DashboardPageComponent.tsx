@@ -23,9 +23,7 @@ function DashboardPageComponent(props) {
       <div className="py-2">
         <div className="container mx-auto">
           <section className="my-12">
-            <h3 className="text-sm tracking-wide text-gray-700 mb-2 uppercase">
-              Your Projects
-            </h3>
+            <h3 className="section-heading">Your Projects</h3>
             <div className="work-card-grid">
               <AddProjectCard />
               {projectQuery?.map((project) => (
@@ -34,7 +32,7 @@ function DashboardPageComponent(props) {
                   defaultValue={project}
                   title="Edit Project"
                 >
-                  <div className="work-card ">
+                  <div className="work-card">
                     <div className="details">
                       <h4 className="title is-4 mb-1">{project.title}</h4>
                       <p>{project.desc}</p>
@@ -45,9 +43,7 @@ function DashboardPageComponent(props) {
             </div>
           </section>
           <section className="my-12">
-            <h3 className="text-sm tracking-wide text-gray-700 mb-2 uppercase">
-              Your Blogs
-            </h3>
+            <h3 className="section-heading">Your Blogs</h3>
             <div className="work-card-grid">
               <AddBlogCard />
               {blogQuery?.map((blog) => (

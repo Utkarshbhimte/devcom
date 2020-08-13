@@ -7,8 +7,6 @@ function LoginPage(props) {
   const [pending, setPending] = useState<boolean>(false);
   const auth = useAuth();
 
-  const handleAuth = () => {};
-
   const login = async () => {
     setPending(true);
     try {
@@ -20,7 +18,7 @@ function LoginPage(props) {
       setPending(false);
     }
   };
-  const handleFormAlert = (data: any) => {};
+
   return (
     <div className="flex items-center justify-center w-screen bg-background h-page">
       <div className="p-8 shadow rounded text-center bg-white ">
