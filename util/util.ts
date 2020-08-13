@@ -1,4 +1,5 @@
 import firebase from "./firebase";
+import { firestore } from "firebase-admin";
 
 export async function apiRequest(path, method = "GET", data) {
   const accessToken = firebase.auth().currentUser
@@ -27,6 +28,21 @@ export async function apiRequest(path, method = "GET", data) {
       }
     });
 }
+
+export const addMetaToFirebaseDoc = (
+  doc: FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>
+) => {
+  let data = doc.data();
+
+  const docWithEntity = {
+    ...data,
+    id: doc.id,
+    created: doc.updateTime.toMillis(),
+    updated: doc.updateTime.toMillis(),
+  };
+
+  return docWithEntity;
+};
 
 // Create an Error with custom message and code
 export class CustomError {

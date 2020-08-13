@@ -23,7 +23,7 @@ const DeveloperPageComponent = ({ data }) => {
 
           <div className="work-card-grid">
             {data.works
-              .filter((work) => work.type === "project")
+              ?.filter((work) => work.type === "project")
               .map((work, index) => {
                 return (
                   <DeveloperProjectCardComponent key={index} project={work} />
@@ -43,7 +43,7 @@ const DeveloperPageComponent = ({ data }) => {
 
           <div className="work-card-grid">
             {data.works
-              .filter((work) => work.type === "blog")
+              ?.filter((work) => work.type === "blog")
               .map((work, index) => {
                 return <DeveloperBlogCardComponent key={index} blog={work} />;
               })}

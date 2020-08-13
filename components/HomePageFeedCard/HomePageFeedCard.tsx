@@ -4,38 +4,42 @@ import { useUser } from "../../util/db";
 
 import CommentIcon from "../../assets/message-square.svg";
 import Link from "next/link";
-import { formatDate } from "../../util/date";
-import { UserData } from "../../util/contracts";
+import { formatFirebaseDate } from "../../util/date";
+import { UserData, Work } from "../../util/contracts";
 
 interface UserDetailChipProps {
   user?: UserData;
-  createdTime: number;
+  subtitle?: string;
 }
-const UserDetailChip: React.FC<UserDetailChipProps> = ({
-  user,
-  createdTime,
-}) => {
+const UserDetailChip: React.FC<UserDetailChipProps> = ({ user, subtitle }) => {
   return (
-    <div className="flex items-center my-4">
-      <figure className="h-8 w-8 mr-4">
-        <img
-          className="rounded-full"
-          src={user?.photoURL}
-          alt="Placeholder image"
-        />
-      </figure>
-      <div className="media-content">
-        <span className="text-vase">{user?.displayName}</span>
-        {/* <span>{formatDate(createdTime)}</span> */}
+    <Link href={`/dev/${user.uid}`}>
+      <div className="flex items-center my-4">
+        <figure className="h-12 w-12 mr-4">
+          <img
+            className="rounded-full"
+            src={user?.photoURL}
+            alt="Placeholder image"
+          />
+        </figure>
+        <div className="media-content">
+          <div className="text-base">{user?.displayName}</div>
+          {subtitle && (
+            <span className="text-gray-600 text-sm">{subtitle}</span>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
-const HomePageFeedCard = ({ data }) => {
+interface HomePageFeedCardProps {
+  data: Work;
+}
+const HomePageFeedCard: React.FC<HomePageFeedCardProps> = ({ data }) => {
   return (
-    <Link href={`/work/${data.id}`}>
-      <div className="cursor-pointer">
+    <div className="cursor-pointer">
+      <Link href={`/work/${data.id}`}>
         <div>
           <div className="text-xs tracking-wide uppercase text-gray-600">
             {data.type}
@@ -45,12 +49,12 @@ const HomePageFeedCard = ({ data }) => {
             <p className="text-sm mb-4 text-gray-600">{data.desc}</p>
           )}
         </div>
-        <UserDetailChip
-          createdTime={data.created.seconds * 1000}
-          user={data.ownerData}
-        />
-      </div>
-    </Link>
+      </Link>
+      <UserDetailChip
+        subtitle={formatFirebaseDate(data.created)}
+        user={data.ownerData}
+      />
+    </div>
   );
 };
 

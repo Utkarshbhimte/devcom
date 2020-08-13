@@ -1,8 +1,12 @@
 export interface UserData extends FirebaseFirestore.DocumentData {
+  id?: string;
   uid: string;
   email: string;
   photoURL: string;
   displayName: string;
+  created?: number;
+  updated?: number;
+  works?: Work[];
 }
 
 export enum WorkType {
@@ -11,10 +15,8 @@ export enum WorkType {
 }
 export interface Work extends FirebaseFirestore.DocumentData {
   id: string;
-  created: {
-    _seconds: number;
-    _nanoseconds: number;
-  };
+  created?: number;
+  updated?: number;
   desc: string;
   type: WorkType;
   title: string;

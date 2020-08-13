@@ -15,16 +15,6 @@ function IndexPage(props) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   // Get external data from the file system, API, DB, etc.
-
-//   // The value of the `props` key will be
-//   //  passed to the `Home` component
-//   return {
-//     custom: [],
-//   };
-// }
-
 export const getServerSideProps = async () => {
   const response = await getWorkList();
   return { props: { posts: JSON.parse(JSON.stringify(response.data)) } };

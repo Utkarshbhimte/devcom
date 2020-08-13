@@ -7,7 +7,7 @@ import {
   updateComment,
   deleteComment,
 } from "../../util/db";
-import { formatDate } from "../../util/date";
+import { formatFirebaseDate } from "../../util/date";
 import { useAuth } from "../../util/auth";
 
 const loadingState = {
@@ -114,9 +114,9 @@ const CommentCell = ({ comment }) => {
         )}
         <div className="grid gap-2 grid-flow-col text-xs mt-2">
           {comment.created && (
-            <span>{formatDate(comment.created.seconds * 1000)}</span>
+            <span>{formatFirebaseDate(comment.created.seconds * 1000)}</span>
           )}
-          {!!user && user.uid === authorData?.uid && (
+          {!!user && user.uid === authorData.uid && (
             <>
               <a role="button" onClick={editComment}>
                 Edit

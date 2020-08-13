@@ -1,5 +1,6 @@
 import { Work, UserData } from "./contracts";
 import admin, { ServiceAccount } from "firebase-admin";
+import { addMetaToFirebaseDoc } from "./util";
 
 const {
   NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -45,6 +46,8 @@ export const getWorkList = async (): Promise<{ data: Work[] }> => {
     return {
       id: doc.id,
       ...data,
+      created: doc.createTime.toMillis(),
+      updatede: doc.updateTime.toMillis(),
     };
   });
 
@@ -71,13 +74,13 @@ export const getWorkDetailsFromServer = async (workId) => {
 
 export const getDevDetailsFromServer = async (devId) => {
   const doc = await db.doc(`users/${devId}`).get();
-  const data = doc.data();
+  const data = addMetaToFirebaseDoc(doc) as UserData;
 
   const workData = await db
     .collection(`works`)
     .where("owner", "==", devId)
     .get();
 
-  data.works = workData.docs.map((d) => d.data());
+  data.works = workData.docs.map(addMetaToFirebaseDoc) as Work[];
   return data;
 };

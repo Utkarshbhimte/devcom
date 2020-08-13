@@ -17,7 +17,7 @@ export async function getServerSideProps({ req, query }) {
   const res = await fetchRelative(req)(`/api/dev-details?id=${workId}`);
   const response = await res.json();
   return {
-    props: { data: { ...(response.data || {}), id: workId } }, // will be passed to the page component as props
+    props: { data: { ...(response.data || {}), id: workId } },
   };
 }
 

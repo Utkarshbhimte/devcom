@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 // import "./WorkPage.scss";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import { CommentInput } from "./CommentInput";
-import { formatDate } from "../../util/date";
+import { formatFirebaseDate } from "../../util/date";
 import Link from "next/link";
 
 const WorkPageComponent = ({ data }) => {
@@ -25,7 +25,7 @@ const WorkPageComponent = ({ data }) => {
               <div>
                 <p className="text-base">{data.ownerData.displayName}</p>
                 <span className="text-sm text-gray-600">
-                  {formatDate(data.created._seconds * 1000)}
+                  {formatFirebaseDate(data.created._seconds * 1000)}
                 </span>
               </div>
             </div>
