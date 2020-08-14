@@ -116,7 +116,7 @@ const CommentCell = ({ comment }) => {
           {comment.created && (
             <span>{formatFirebaseDate(comment.created.seconds * 1000)}</span>
           )}
-          {!!user && user.uid === authorData.uid && (
+          {!!user && user.uid === authorData?.uid && (
             <>
               <a role="button" onClick={editComment}>
                 Edit
