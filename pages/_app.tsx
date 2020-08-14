@@ -14,7 +14,6 @@ import Footer from "../components/Footer";
 import { ProvideAuth } from "../util/auth";
 import logo from "../assets/logo-with-text.svg";
 
-NProgress.start();
 //Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
