@@ -1,7 +1,7 @@
 import React from "react";
 // import "./DeveloperPageComponent.scss";
 import DeveloperBannerComponent from "../../components/DeveloperBanner/DeveloperBannerComponent";
-import DeveloperProjectCardComponent from "../../components/DeveloperProjectCard/DeveloperProjectCardComponent";
+import DeveloperProjectCard from "../../components/DeveloperProjectCard/DeveloperProjectCardComponent";
 import DeveloperBlogCardComponent from "../../components/DeveloperBlogCard/DeveloperBlogCardComponent";
 
 const DeveloperPageComponent = ({ data }) => {
@@ -21,9 +21,7 @@ const DeveloperPageComponent = ({ data }) => {
 
           <div className="work-card-grid">
             {devProjects.map((work, index) => {
-              return (
-                <DeveloperProjectCardComponent key={index} project={work} />
-              );
+              return <DeveloperProjectCard key={index} project={work} />;
             })}
           </div>
         </section>

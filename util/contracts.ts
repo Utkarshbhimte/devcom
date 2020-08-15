@@ -23,6 +23,7 @@ export interface Work extends FirebaseFirestore.DocumentData {
   tags: string[];
   projectLink: string;
   codeLink: string;
+  blogLink: string;
   owner: string;
   ownerData?: UserData;
 }

@@ -7,6 +7,8 @@ import { useProjectsByOwner, useBlogsByOwner } from "../../util/db";
 import { BlogFormModal } from "../AddBlogCard/AddBlogCard";
 import { ProjectFormModal } from "../AddProjectCard/AddProjectCard";
 import { Work } from "../../util/contracts";
+import DeveloperProjectCard from "../DeveloperProjectCard/DeveloperProjectCardComponent";
+import DeveloperBlogCardComponent from "../DeveloperBlogCard/DeveloperBlogCardComponent";
 
 function DashboardPageComponent(props) {
   const { user } = useAuth();
@@ -32,12 +34,7 @@ function DashboardPageComponent(props) {
                   defaultValue={project}
                   title="Edit Project"
                 >
-                  <div className="work-card">
-                    <div className="details">
-                      <h4 className="title is-4 mb-1">{project.title}</h4>
-                      <p>{project.desc}</p>
-                    </div>
-                  </div>
+                  <DeveloperProjectCard project={project} />
                 </ProjectFormModal>
               ))}
             </div>
@@ -52,12 +49,7 @@ function DashboardPageComponent(props) {
                   defaultValue={blog}
                   title="Edit Blog"
                 >
-                  <div className="work-card ">
-                    <div className="details">
-                      <h4 className="title is-4 mb-1">{blog.title}</h4>
-                      <p>{blog.desc}</p>
-                    </div>
-                  </div>
+                  <DeveloperBlogCardComponent blog={blog} />
                 </BlogFormModal>
               ))}
             </div>

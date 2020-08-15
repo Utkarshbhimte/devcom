@@ -44,6 +44,9 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const data = new FormData(event.target);
+    console.log({ data });
+
     try {
       const title = titleRef.current && titleRef.current.value;
       const desc = descRef.current && descRef.current.value;
@@ -101,7 +104,8 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                   <input
                     ref={blogLinkRef}
                     autoFocus
-                    defaultValue={defaultValue?.link}
+                    name="blogLink"
+                    defaultValue={defaultValue?.blogLink}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="https://"
@@ -113,6 +117,7 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                   </label>
                   <input
                     ref={titleRef}
+                    name="title"
                     defaultValue={defaultValue?.title}
                     className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                       isFetchingData ? "is-loading" : ""
@@ -145,7 +150,8 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                   </label>
                   <textarea
                     ref={descRef}
-                    defaultValue={defaultValue?.description}
+                    name="desc"
+                    defaultValue={defaultValue?.desc}
                     className={`textarea ${isFetchingData ? "is-loading" : ""}`}
                     placeholder="Keep it under 220 characters"
                   ></textarea>
@@ -158,7 +164,7 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                 {defaultValue?.id && (
                   <button
                     type="button"
-                    onClick={handleSubmit}
+                    onClick={handleDelete}
                     className="inline-flex justify-center w-full rounded-md text-red-400 border border-transparent px-4 py-2 text-base leading-6 font-medium  shadow-sm hover:text-red-300 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                   >
                     Delete
@@ -189,83 +195,6 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
           </div>
         </div>
       )}
-      {/* {!!showForm && (
-        <div className="modal is-active">
-          <div className="modal-background"></div>
-          <div className="modal-content">
-            <h3 className="title is-4">{title}</h3>
-            <div className="form-wrapper">
-              <div className="control">
-                <span>Blog URL </span>
-                <input
-                  ref={blogLinkRef}
-                  defaultValue={defaultValue?.blogLink}
-                  className="input"
-                  type="text"
-                  placeholder="https://"
-                />
-              </div>
-              <div className="control">
-                <span>Title</span>
-                <input
-                  ref={titleRef}
-                  defaultValue={defaultValue?.title}
-                  autoFocus
-                  className={`input ${isFetchingData ? "is-loading" : ""}`}
-                  type="text"
-                />
-              </div>
-              <div className="control">
-                <span>Tags</span>
-                <div className="tags">
-                  {tags.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <input
-                  className="input"
-                  type="text"
-                  defaultValue={(defaultValue.tags || []).join(",")}
-                  placeholder="add relevant language and libraries; comma separated"
-                  onChange={handleTagsChange}
-                />
-              </div>
-              <div className="control">
-                <span>Brief Description</span>
-                <textarea
-                  ref={descRef}
-                  defaultValue={defaultValue?.desc}
-                  className={`textarea ${isFetchingData ? "is-loading" : ""}`}
-                  placeholder="Keep it under 220 characters"
-                ></textarea>
-              </div>
-            </div>
-            <div className="buttons">
-              {defaultValue.id && (
-                <div onClick={handleDelete} className="button is-danger">
-                  Delete
-                </div>
-              )}
-              <div onClick={handleToggle} className="button">
-                Cancel
-              </div>
-              <div
-                onClick={handleSubmit}
-                className={`button is-primary ${isLoading ? "is-loading" : ""}`}
-              >
-                Add Blog
-              </div>
-            </div>
-          </div>
-          <button
-            onClick={handleToggle}
-            className="modal-close is-large"
-            aria-label="close"
-          ></button>
-        </div>
-      )} */}
     </>
   );
 };

@@ -1,11 +1,19 @@
 import React from "react";
 // import './DeveloperBlogCardComponent.scss';
 import externalLinkLogo from "../../assets/external-link.svg";
+import { Work } from "../../util/contracts";
 
-const DeveloperBlogCardComponent = ({ blog }) => {
+interface DeveloperProjectCardProps {
+  blog: Work;
+  onClick?: () => void;
+}
+const DeveloperBlogCardComponent: React.FC<DeveloperProjectCardProps> = ({
+  blog,
+  onClick,
+}) => {
   let { title, desc, tags, blogLink } = blog;
   return (
-    <div className="work-card p-4">
+    <div className="work-card p-4" onClick={onClick}>
       <h4 className="text-xl mb-2">{title}</h4>
       <div className="mt-2 mb-4">
         {tags.map((tag, index) => (

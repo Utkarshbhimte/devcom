@@ -1,11 +1,19 @@
 import React from "react";
 // import './DeveloperProjectCardComponent.scss';
 import githubLogo from "../../assets/github.svg";
+import { Work } from "../../util/contracts";
 
-const DeveloperProjectCardComponent = ({ project }) => {
+interface DeveloperProjectCardProps {
+  project: Work;
+  onClick?: () => void;
+}
+const DeveloperProjectCard: React.FC<DeveloperProjectCardProps> = ({
+  project,
+  onClick,
+}) => {
   let { title, desc, tags, projectLink, codeLink } = project;
   return (
-    <div className="work-card p-4">
+    <div className="work-card p-4" onClick={onClick}>
       <h3 className="text-xl mb-2">{title}</h3>
       <div className="mt-2 mb-4">
         {tags.map((tag, index) => (
@@ -43,4 +51,4 @@ const DeveloperProjectCardComponent = ({ project }) => {
   );
 };
 
-export default DeveloperProjectCardComponent;
+export default DeveloperProjectCard;
