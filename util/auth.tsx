@@ -53,7 +53,7 @@ function useProvideAuth() {
     await waitForFirebase();
 
     // Create the user in the database if they are new
-    createUser(user.uid, {
+    await createUser(user.uid, {
       email: user.email,
       photoURL: user.photoURL,
       displayName: user.displayName,
@@ -64,21 +64,12 @@ function useProvideAuth() {
     return user;
   };
 
-  const signIn = () => {
-    return signinWithProvider(AuthProvider.github);
-  };
+  const signIn = async () => {
+    const provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope("repo");
+    const authResponse = await firebase.auth().signInWithPopup(provider);
 
-  const signinWithProvider = (name: AuthProvider) => {
-    // Get provider data by name ("password", "google", etc)
-    const providerData = allProviders.find((p) => p.name === name);
-
-    const provider = new providerData.providerMethod();
-
-    if (providerData.parameters) {
-      provider.setCustomParameters(providerData.parameters);
-    }
-
-    return firebase.auth().signInWithPopup(provider).then(handleAuth);
+    return handleAuth(authResponse);
   };
 
   const signout = () => {
@@ -143,8 +134,8 @@ function useProvideAuth() {
       photoURL: user.photoURL,
       ...finalUser,
     },
-    signIn,
     loading,
+    signIn,
     signout,
     updateProfile,
   };
@@ -234,33 +225,6 @@ export enum AuthProvider {
   twitter = "twitter",
   github = "github",
 }
-
-const allProviders = [
-  {
-    id: "google.com",
-    name: "google",
-    providerMethod: firebase.auth.GoogleAuthProvider,
-  },
-  {
-    id: "facebook.com",
-    name: "facebook",
-    providerMethod: firebase.auth.FacebookAuthProvider,
-    parameters: {
-      // Tell fb to show popup size UI instead of full website
-      display: "popup",
-    },
-  },
-  {
-    id: "twitter.com",
-    name: "twitter",
-    providerMethod: firebase.auth.TwitterAuthProvider,
-  },
-  {
-    id: "github.com",
-    name: "github",
-    providerMethod: firebase.auth.GithubAuthProvider,
-  },
-];
 
 // Waits on Firebase user to be initialized before resolving promise
 // This is used to ensure auth is ready before any writing to the db can happen

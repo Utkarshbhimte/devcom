@@ -10,7 +10,7 @@ function LoginPage(props) {
   const login = async () => {
     setPending(true);
     try {
-      const user = await auth.signIn();
+      await auth.signIn();
       router.push("/dashboard");
     } catch (error) {
       console.error(error);

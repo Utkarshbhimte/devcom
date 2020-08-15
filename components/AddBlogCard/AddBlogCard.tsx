@@ -206,7 +206,9 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
 
 const AddBlogCard = () => (
   <BlogFormModal title="Add Blog">
-    <div className="add-blog-card work-card">Add Blog</div>
+    <div className="add-blog-card work-card h-100 flex items-center justify-center">
+      Add Blog
+    </div>
   </BlogFormModal>
 );
 
