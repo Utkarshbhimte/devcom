@@ -87,9 +87,7 @@ export const ProjectFormModal: React.FC<ProjectFormModalProps> = ({
       {!!showForm && (
         <div className="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center">
           <div className="fixed inset-0 transition-opacity">
-            <div className="absolute inset-0 bg-gray-500 opacity-75">
-              {title}
-            </div>
+            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
           </div>
           <form
             className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full"
@@ -119,7 +117,6 @@ export const ProjectFormModal: React.FC<ProjectFormModalProps> = ({
                     Repo URL
                   </label>
                   <input
-                    autoFocus
                     name="codeLink"
                     ref={codeLinkRef}
                     defaultValue={defaultValue?.codeLink}
@@ -226,7 +223,7 @@ export const ProjectFormModal: React.FC<ProjectFormModalProps> = ({
 
 const AddProjectCard = () => (
   <ProjectFormModal title="Add Project">
-    <div className="add-project-card work-card h-100 flex items-center justify-center">
+    <div className="add-project-card work-card h-100 flex items-center justify-center focus:border-primary hover:border-primary focus:text-primary hover:text-primary cursor-pointer">
       Add Project
     </div>
   </ProjectFormModal>

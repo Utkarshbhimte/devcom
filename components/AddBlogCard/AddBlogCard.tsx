@@ -181,7 +181,7 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                         onClick={handleSubmit}
                         className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-primary text-base leading-6 font-medium text-white shadow-sm hover:bg-primary-light focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       >
-                        {defaultValue.id ? "Edit Blog" : "Add Blog"}
+                        {defaultValue?.id ? "Edit Blog" : "Add Blog"}
                       </button>
                     </span>
                     <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
@@ -206,7 +206,7 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
 
 const AddBlogCard = () => (
   <BlogFormModal title="Add Blog">
-    <div className="add-blog-card work-card h-100 flex items-center justify-center">
+    <div className="add-blog-card work-card h-100 flex items-center justify-center cursor-pointer focus:border-primary hover:border-primary focus:text-primary hover:text-primary">
       Add Blog
     </div>
   </BlogFormModal>
