@@ -16,7 +16,6 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
   const { user } = useAuth();
   const [showForm, setShowForm] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isFetchingData, setIsFetchingData] = useState<boolean>(true);
   const [tags, setTags] = useState<string[]>(defaultValue?.tags || []);
 
   // inputRef
@@ -43,9 +42,6 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const data = new FormData(event.target);
-    console.log({ data });
 
     try {
       const title = titleRef.current && titleRef.current.value;
@@ -119,9 +115,7 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                     ref={titleRef}
                     name="title"
                     defaultValue={defaultValue?.title}
-                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                      isFetchingData ? "is-loading" : ""
-                    }`}
+                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
                     type="text"
                   />
                 </div>
@@ -129,9 +123,12 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                   <label className="block text-gray-700 text-sm font-bold mb-2">
                     Tags
                   </label>
-                  <div className="tags">
-                    {tags.map((tag) => (
-                      <span key={tag} className="tag">
+                  <div className="mt-2 mb-4">
+                    {tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="text-primary text-xs cursor-pointer border border-primary rounded inline-block mr-2 px-2"
+                      >
                         {tag}
                       </span>
                     ))}
@@ -152,7 +149,7 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                     ref={descRef}
                     name="desc"
                     defaultValue={defaultValue?.desc}
-                    className={`textarea ${isFetchingData ? "is-loading" : ""}`}
+                    className={`textarea`}
                     placeholder="Keep it under 220 characters"
                   ></textarea>
                 </div>
@@ -172,24 +169,32 @@ export const BlogFormModal: React.FC<BlogFormModalProps> = ({
                 )}
               </div>
               <div className="sm:flex sm:flex-row-reverse">
-                <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-primary text-base leading-6 font-medium text-white shadow-sm hover:bg-primary-light focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                  >
-                    Add Blog
-                  </button>
-                </span>
-                <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                  <button
-                    onClick={handleToggle}
-                    type="button"
-                    className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                  >
-                    Cancel
-                  </button>
-                </span>
+                {isLoading && (
+                  <span className="text-primary py-2 px-4">Loading</span>
+                )}
+                {!isLoading && (
+                  <>
+                    {" "}
+                    <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                      <button
+                        type="button"
+                        onClick={handleSubmit}
+                        className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-primary text-base leading-6 font-medium text-white shadow-sm hover:bg-primary-light focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      >
+                        {defaultValue.id ? "Edit Blog" : "Add Blog"}
+                      </button>
+                    </span>
+                    <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                      <button
+                        onClick={handleToggle}
+                        type="button"
+                        className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      >
+                        Cancel
+                      </button>
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           </div>

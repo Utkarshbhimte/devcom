@@ -70,7 +70,11 @@ export function createItem(data) {
 export function createWork(data) {
   return firestore
     .collection("works")
-    .add({ ...data, created: firebase.firestore.FieldValue.serverTimestamp() });
+    .add({
+      ...data,
+      created: firebase.firestore.FieldValue.serverTimestamp(),
+      updated: firebase.firestore.FieldValue.serverTimestamp(),
+    });
 }
 
 export function getWork(id) {

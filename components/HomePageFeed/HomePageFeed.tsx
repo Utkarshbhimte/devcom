@@ -18,7 +18,7 @@ const HomePageFeed: React.FC<HomePageFeedProps> = (props) => {
         {!props.posts?.length && (
           <div className="empty-feed">There are nothing here right now</div>
         )}
-        <div className="max-w-xl grid gap-4 my-8">
+        <div className="max-w-xl grid gap-12 my-8">
           {props.posts?.map((data) => (
             <HomePageFeedCard key={data.id} data={data} />
           ))}

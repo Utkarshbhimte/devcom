@@ -27,25 +27,30 @@ const DeveloperProjectCard: React.FC<DeveloperProjectCardProps> = ({
       </div>
 
       <p className="text-sm text-gray-600 mb-4">{desc}</p>
-      {projectLink && (
-        <a
-          href={projectLink}
-          className="mr-2 text-sm text-primary my-2 block"
-          target="_blank"
-        >
-          {projectLink}
-        </a>
-      )}
 
-      <div className="grid gap-2 mt-2 ">
-        <a
-          className="w-4 h-4"
-          href={codeLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={githubLogo}></img>
-        </a>
+      <div className="flex justify-between items-center">
+        {projectLink ? (
+          <a
+            href={projectLink}
+            className=" text-sm text-primary block"
+            target="_blank"
+          >
+            {projectLink}
+          </a>
+        ) : (
+          <div />
+        )}
+
+        <div className="grid gap-2 mt-2 ">
+          <a
+            className="w-4 h-4"
+            href={codeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={githubLogo}></img>
+          </a>
+        </div>
       </div>
     </div>
   );

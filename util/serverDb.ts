@@ -39,7 +39,7 @@ try {
 const db = admin.firestore();
 
 export const getWorkList = async (): Promise<{ data: Work[] }> => {
-  const querySnapshot = await db.collection("works").get();
+  const querySnapshot = await db.collection("works").orderBy("created").get();
   let workList: Work[] = querySnapshot.docs.map((doc) => {
     const data = doc.data() as Work;
 
@@ -47,7 +47,7 @@ export const getWorkList = async (): Promise<{ data: Work[] }> => {
       id: doc.id,
       ...data,
       created: doc.createTime.toMillis(),
-      updatede: doc.updateTime.toMillis(),
+      updated: doc.updateTime.toMillis(),
     };
   });
 

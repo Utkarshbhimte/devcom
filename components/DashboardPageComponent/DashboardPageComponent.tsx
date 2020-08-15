@@ -12,8 +12,10 @@ import DeveloperBlogCardComponent from "../DeveloperBlogCard/DeveloperBlogCardCo
 
 function DashboardPageComponent(props) {
   const { user } = useAuth();
-  const [projectQuery] = user && useProjectsByOwner(user.uid);
-  const [blogQuery] = useBlogsByOwner(user.uid);
+
+  const [projectQuery] = useProjectsByOwner(user?.uid);
+  const [blogQuery] = useBlogsByOwner(user?.uid);
+
   return (
     <div color={props.color} className="dashboard-page">
       <div className="py-12 border-b border-t">

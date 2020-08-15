@@ -29,12 +29,12 @@ const DeveloperBlogCardComponent: React.FC<DeveloperProjectCardProps> = ({
       <p className="text-sm text-gray-600 mb-4">{desc}</p>
 
       <a
-        className="popout-icon"
+        className="block ml-auto w-4"
         href={blogLink}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img style={{ height: "1.3rem" }} src={externalLinkLogo}></img>
+        <img className="w-4 h-4" src={externalLinkLogo}></img>
       </a>
     </div>
   );
