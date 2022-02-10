@@ -20,7 +20,7 @@
     "next-absolute-url": "^1.2.2",
     "next-images": "^1.4.1",
     "next-seo": "^4.7.3",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nprogress": "^0.2.0",
     "query-string": "6.9.0",
     "react": "^16.13.1",
