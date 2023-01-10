@@ -14,7 +14,7 @@
     "analytics": "0.3.1",
     "date-fns": "^2.11.1",
     "firebase": "7.15.1",
-    "firebase-admin": "^8.13.0",
+    "firebase-admin": "^11.4.1",
     "gray-matter": "^4.0.2",
     "next": "^9.4.4",
     "next-absolute-url": "^1.2.2",
